@@ -1,0 +1,78 @@
+using System;
+
+namespace OpenGl
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            //task1
+            int day = int.Parse(Console.ReadLine());
+            int month = int.Parse(Console.ReadLine());
+
+            string day1 = day > 0 && day <= 31 ? "True" : "False";
+            string month1 = month > 0 && month <= 12 ? "True" : "False";
+
+            Console.WriteLine(day1, month1);
+
+
+            //task2
+            double double1 = Convert.ToDouble(Console.ReadLine());
+            int double2 = (int)(double1 * 10) % 10;
+            int double3 = (int)(double1 * 100) % 10;
+            int a = (int)(double2 + double3);
+
+            Console.WriteLine(a);
+
+
+            //task3
+
+            int h = int.Parse(Console.ReadLine());
+
+            string prhase = h >= 0 && h <= 10 ? "Good Morning"
+                                             : h > 10 && h <= 15 ? "Good afternoon!"
+                                             : h > 15 && h <= 24 ? "Good night" : "Wrong format";
+            Console.WriteLine(prhase);
+
+            //task4
+            Console.WriteLine(TestCaseStatus.Pass);
+
+            //task5
+
+            RGB white;
+
+            white.red = 255;
+            white.green = 255;
+            white.blue = 255;
+            Console.WriteLine(white.color());
+
+
+            RGB black;
+            black.red = 0;
+            black.green = 0;
+            black.blue = 0;
+            Console.WriteLine(black.color());
+
+
+
+
+
+
+
+        }
+        enum TestCaseStatus { Pass, Fail, Blocked, WP, Unexecuted }
+        struct RGB
+        {
+            public int red;
+            public int green;
+            public int blue;
+
+            public string color()
+            {
+                return $"{red} {green} {blue}";
+            }
+        }
+    }
+
+    
+}
