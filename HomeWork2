@@ -1,0 +1,106 @@
+using System;
+using System.Linq;
+
+
+namespace HomeWork2
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            try 
+            {
+                while (true)
+                {
+                    //task1
+                    Console.Clear();
+
+                    Console.WriteLine("Enter 3 numbers: ");
+
+                    float firstNumb = float.Parse(Console.ReadLine());
+                    float secondNumb = float.Parse(Console.ReadLine());
+                    float thirdNumb = float.Parse(Console.ReadLine());
+
+                    string check = firstNumb >= -5 && firstNumb <= 5 &&
+                                   secondNumb >= -5 && secondNumb <= 5 &&
+                                   thirdNumb >= -5 && thirdNumb <= 5 ? "True" : "False";
+                    Console.WriteLine(check);
+                    Console.WriteLine();
+
+                    //task2
+
+                    Console.WriteLine("Enter three numbers: ");
+
+                    int firstNumb1 = int.Parse(Console.ReadLine());
+                    int secondNumb1 = int.Parse(Console.ReadLine());
+                    int thirdNumb1 = int.Parse(Console.ReadLine());
+
+                    int[] array = new int[3];
+
+
+                    Console.WriteLine();
+                    for (int i = 0; i < 1; i++)
+                    {
+                        array[0] = firstNumb1;
+                        array[1] = secondNumb1;
+                        array[2] = thirdNumb1;
+                    }
+
+                    Console.WriteLine("The min is: " + array.Min() + " ");
+                    Console.WriteLine("The max is: " + array.Max());
+                    Console.WriteLine();
+
+                    //task3
+                    Console.WriteLine("Enter smth: ");
+                    int error = int.Parse(Console.ReadLine());
+
+                    Console.WriteLine(HTTP.Error405);
+                    Console.WriteLine();
+
+                    //task4
+                    Dog myDog;
+                    Console.Write("Enter a name: ");
+                    myDog.name = Console.ReadLine();
+                    Console.Write("Enter a mark: ");
+                    myDog.mark = Console.ReadLine();
+                    Console.Write("Enter age: ");
+                    myDog.age = int.Parse(Console.ReadLine());
+
+                    Console.WriteLine(myDog.n());
+
+                    Console.ReadLine();
+
+                }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            
+        }
+
+        enum HTTP 
+        {
+            Error403,
+            Error404,
+            Error405,
+
+        }
+
+        struct Dog 
+        {
+            public string name;
+            public string mark;
+            public int age;
+
+            public string n ()
+            {
+                return $"{name} {mark} {age}";
+            }
+
+        }
+
+    }
+}
+
