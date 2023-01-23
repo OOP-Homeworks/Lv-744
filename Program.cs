@@ -1,57 +1,82 @@
 ﻿using System;
-
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml.Schema;
 
-namespace ConsoleApp21
+namespace OpenGl
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            try
-            {
-                while (true)
-                {
-                    Console.Clear();
-                    //1 task
-                    Console.Write("Enter a value: ");
-                    int a = int.Parse(Console.ReadLine());
-                    Console.WriteLine(a * 4);
-                    Console.WriteLine(3.14159265358979323846 * a * a);
+            ////task1
+            //int day = int.Parse(Console.ReadLine());
+            //int month = int.Parse(Console.ReadLine());
 
-                    //2 task
-                    Console.Write("What is your name?: ");
-                    string name = Console.ReadLine();
-                    Console.Write($"How old are you? {name}: ");
-                    int age = int.Parse(Console.ReadLine());
-                    Console.WriteLine($"Your name is {name} and you are {age}");
+            //string day1 = day > 0 && day <= 31 ? "True" : "False";
+            //string month1 = month > 0 && month <= 12 ? "True" : "False";
+
+            //Console.WriteLine(day1, month1);
 
 
-                    //3 task
-                    Console.Write("Enter a value: ");
-                    double r = double.Parse(Console.ReadLine());
-                    Console.WriteLine($"The length is {2 * 3.14 * r}, area is {r * r * 3.14}, volume is {4 / 3 * 3.14 * r * r * r}.");
-                    Console.ReadLine();
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
+            ////task2
+            //double double1 = Convert.ToDouble(Console.ReadLine());
+            //int double2 = (int)(double1 * 10) % 10;
+            //int double3 = (int)(double1 * 100) % 10;
+            //int a = (int)(double2 + double3);
+
+            //Console.WriteLine(a);
+
+
+            ////task3
+
+            //int h = int.Parse(Console.ReadLine());
+
+            //string prhase = h >= 0 && h <= 10 ? "Good Morning"
+            //                                 : h > 10 && h <= 15 ? "Good afternoon!"
+            //                                 : h > 15 && h <= 24 ? "Good night" : "Wrong format";
+            //Console.WriteLine(prhase);
+
+            ////task4
+            //Console.WriteLine(TestCaseStatus.Pass);
+
+            ////task5
+
+            RGB white;
+
+            white.red = 255;
+            white.green = 255;
+            white.blue = 255;
+            Console.WriteLine(white.color());
+
+
+            RGB black;
+            black.red = 0;
+            black.green = 0;
+            black.blue = 0;
+            Console.WriteLine(black.color());
+
+
+
 
 
 
 
         }
+        enum TestCaseStatus { Pass, Fail, Blocked, WP, Unexecuted }
+        struct RGB
+        {
+            public int red;
+            public int green;
+            public int blue;
 
-
-
-
-
+            public string color()
+            {
+                return $"{red} {green} {blue}";
+            }
+        }
     }
-}
 
+    
+}
