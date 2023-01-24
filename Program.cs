@@ -1,57 +1,79 @@
 ﻿using System;
 
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Schema;
-
-namespace ConsoleApp21
+namespace lesson2
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            try
-            {
-                while (true)
-                {
-                    Console.Clear();
-                    //1 task
-                    Console.Write("Enter a value: ");
-                    int a = int.Parse(Console.ReadLine());
-                    Console.WriteLine(a * 4);
-                    Console.WriteLine(3.14159265358979323846 * a * a);
-
-                    //2 task
-                    Console.Write("What is your name?: ");
-                    string name = Console.ReadLine();
-                    Console.Write($"How old are you? {name}: ");
-                    int age = int.Parse(Console.ReadLine());
-                    Console.WriteLine($"Your name is {name} and you are {age}");
-
-
-                    //3 task
-                    Console.Write("Enter a value: ");
-                    double r = double.Parse(Console.ReadLine());
-                    Console.WriteLine($"The length is {2 * 3.14 * r}, area is {r * r * 3.14}, volume is {4 / 3 * 3.14 * r * r * r}.");
-                    Console.ReadLine();
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-
-
-
-
+            Hw1();
+            Hw2();
+            Hw3();
+            Hw4();
+            Console.ReadKey();
         }
 
 
+        static void Hw1()
+        {
+            float x = (float)Convert.ToDouble(Console.ReadLine());
+            float y = (float)Convert.ToDouble(Console.ReadLine());
+            float z = (float)Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine((Math.Abs(x) > 5) ? "The number x is out of range" :
+                              (Math.Abs(y) > 5) ? "The number y is out of range" :
+                              (Math.Abs(z) > 5) ? "The number z is out of range" :
+                              "Everything is fine"
+            );
+        }
 
 
+        static void Hw2()
+        {
+            int x = Convert.ToInt32(Console.ReadLine());
+            int y = Convert.ToInt32(Console.ReadLine());
+            int z = Convert.ToInt32(Console.ReadLine());
+            int max = Math.Max(x, Math.Max(y, z));
+            int min = Math.Min(x, Math.Min(y, z));
+            Console.WriteLine($"max : {max}, min : {min}");
+        }
+
+
+        enum HTTPError1xx {Continue=100, Switching_protocols, Processing, Early_Hints};
+        static void Hw3()
+        {
+            Console.Write("Enter the code of error (100-103): ");
+            int code = Convert.ToInt32(Console.ReadLine());
+            if (code < 100 || code > 103) Console.WriteLine("The code you entered doesn't fit");
+            else
+            {
+                HTTPError1xx error = (HTTPError1xx)code;
+                Console.WriteLine($"The error is: {error}");
+            }
+        }
+
+
+        struct Dog
+        {
+            public string name;
+            public string mark;
+            public int age;
+            public override string ToString()
+            {
+                return string.Format($"Dog {name}, {age} y.o., mark: {mark}");
+            }
+        }
+        static void Hw4()
+        {
+            Dog myDog;
+            Console.Write("Enter dog's name: ");
+            myDog.name = Console.ReadLine();
+            Console.Write("Enter dog's mark: ");
+            myDog.mark = Console.ReadLine();
+            Console.Write("Enter dog's age: ");
+            myDog.age = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine(myDog);
+        }
 
     }
 }
-
