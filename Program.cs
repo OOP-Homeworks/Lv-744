@@ -6,74 +6,91 @@ namespace lesson2
     {
         static void Main(string[] args)
         {
-            Hw1();
-            Hw2();
-            Hw3();
-            Hw4();
+            At1();
+            At2();
             Console.ReadKey();
         }
 
-
-        static void Hw1()
+        //Task 2
+        struct Student
         {
-            float x = (float)Convert.ToDouble(Console.ReadLine());
-            float y = (float)Convert.ToDouble(Console.ReadLine());
-            float z = (float)Convert.ToDouble(Console.ReadLine());
-            Console.WriteLine((Math.Abs(x) > 5) ? "The number x is out of range" :
-                              (Math.Abs(y) > 5) ? "The number y is out of range" :
-                              (Math.Abs(z) > 5) ? "The number z is out of range" :
-                              "Everything is fine"
+            public string lastName;
+            public int groupNumber;
+        }
+        static void At2()
+        {
+            Console.Write("Enter the general number of students: ");
+            int studentsNumber = Convert.ToInt32(Console.ReadLine());
+            Student[] students = new Student[studentsNumber];
+            for (int i = 0; i < studentsNumber; i++)
+            {
+                Console.Write("Enter the last name of student: ");
+                students[i].lastName = Console.ReadLine();
+                Console.Write("Enter the group the student belongs to: ");
+                students[i].groupNumber = Convert.ToInt32(Console.ReadLine());
+            }
+            Console.Write("Enter the number of group you want to see: ");
+            int outputGroupNumber = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Enter the first letter of student's last name: ");
+            char letter  = Convert.ToChar(Console.Read());
+            Console.ReadLine();
+            foreach (Student i in students)
+            {
+                if (i.groupNumber == outputGroupNumber)
+                {
+                    if (i.lastName[0] == letter) Console.WriteLine(i.lastName);
+                }
+            }  
+        }
+
+
+        //Task 1
+        static void At1()
+        {
+            Console.WriteLine("Choose what to eat(Fish/Mouse/Kitekat). Press 1/2/3/4");
+            char digit = Convert.ToChar(Console.Read());
+            Console.ReadLine();
+            Cat cat = new Cat();
+            switch (digit)
+            {
+                case '1':
+                    cat.EatSomething(Food.Fish);
+                    break;
+                case '2':
+                    cat.EatSomething(Food.Mouse);
+                    break;
+                case '3':
+                    cat.EatSomething(Food.Kitekat);
+                    break;
+                case '4':
+                    cat.EatSomething(Food.Chocolate);
+                    break;
+                default:
+                    Console.WriteLine("You entered incorrect choice");
+                    break;
+            }
+            cat.DisplayFullness();
+        }
+    }
+
+    enum Food { Fish = 15, Mouse = 10, Kitekat=20, Chocolate=-10 };
+    class Cat
+    {
+        public int fullnessLevel = 50;
+        public void EatSomething(Food food)
+        {
+            fullnessLevel += (int)food;
+            Console.WriteLine(  (int)food > 0 ?
+                                $"Such a delicious {food}!\n" +
+                                $"The level of fullness was increased by {(int)food} points" :
+
+                                $"Oops. Cats don't eat {food}\n" +
+                                $"The level of fullness was decreased by {-(int)food} points"
             );
         }
-
-
-        static void Hw2()
+        public void DisplayFullness()
         {
-            int x = Convert.ToInt32(Console.ReadLine());
-            int y = Convert.ToInt32(Console.ReadLine());
-            int z = Convert.ToInt32(Console.ReadLine());
-            int max = Math.Max(x, Math.Max(y, z));
-            int min = Math.Min(x, Math.Min(y, z));
-            Console.WriteLine($"max : {max}, min : {min}");
+            Console.WriteLine($"The level of fullness = {fullnessLevel}");
         }
-
-
-        enum HTTPError1xx {Continue=100, Switching_protocols, Processing, Early_Hints};
-        static void Hw3()
-        {
-            Console.Write("Enter the code of error (100-103): ");
-            int code = Convert.ToInt32(Console.ReadLine());
-            if (code < 100 || code > 103) Console.WriteLine("The code you entered doesn't fit");
-            else
-            {
-                HTTPError1xx error = (HTTPError1xx)code;
-                Console.WriteLine($"The error is: {error}");
-            }
-        }
-
-
-        struct Dog
-        {
-            public string name;
-            public string mark;
-            public int age;
-            public override string ToString()
-            {
-                return string.Format($"Dog {name}, {age} y.o., mark: {mark}");
-            }
-        }
-        static void Hw4()
-        {
-            Dog myDog;
-            Console.Write("Enter dog's name: ");
-            myDog.name = Console.ReadLine();
-            Console.Write("Enter dog's mark: ");
-            myDog.mark = Console.ReadLine();
-            Console.Write("Enter dog's age: ");
-            myDog.age = Convert.ToInt32(Console.ReadLine());
-
-            Console.WriteLine(myDog);
-        }
-
     }
 }
