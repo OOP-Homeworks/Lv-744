@@ -1,57 +1,78 @@
 ﻿using System;
 
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Schema;
-
-namespace ConsoleApp21
+class Program
 {
-    internal class Program
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
+        //Task1();
+        //Task2();
+        //Task3();
+        //Task4();
+    }
+    static void Task1()
+    {
+        Console.WriteLine("Enter first number: ");
+        float first = float.Parse(Console.ReadLine());
+        Console.WriteLine("Enter second number: ");
+        float second = float.Parse(Console.ReadLine());
+        Console.WriteLine("Enter third number: ");
+        float third = float.Parse(Console.ReadLine());
+        Console.WriteLine((first >= -5 && first <= 5) && (second >= -5 && second <= 5) && (third >= -5 && third <= 5) ?
+                                                                                                                    "All the numbers are between -5 and 5." :
+                                                                                                                    "There are number out of range.");
+    }
+    static void Task2()
+    {
+        Console.WriteLine("Enter first number: ");
+        int first = int.Parse(Console.ReadLine());
+        Console.WriteLine("Enter second number: ");
+        int second = int.Parse(Console.ReadLine());
+        Console.WriteLine("Enter third number: ");
+        int third = int.Parse(Console.ReadLine());
+        int max = Math.Max(first, Math.Max(second, third));
+        int min = Math.Min(first, Math.Min(second, third));
+        Console.WriteLine($"Highest number is {max}");
+        Console.WriteLine($"Lowest number is {min}");
+    }
+    enum HTTPError 
+    {
+        BadRequest = 400,
+        Unauthorized = 401,
+        PaymentRequired = 402,
+        Forbidden = 403,
+        NotFound = 404
+    }
+    static void Task3()
+    {
+        Console.WriteLine("Enter number of error: ");
+        int error = int.Parse(Console.ReadLine());
+        Console.WriteLine((HTTPError)error);
+    }
+    public struct Dog
+    {
+        public string Name;
+        public string Mark;
+        public float Age;
+
+        public override string ToString()
         {
-            try
-            {
-                while (true)
-                {
-                    Console.Clear();
-                    //1 task
-                    Console.Write("Enter a value: ");
-                    int a = int.Parse(Console.ReadLine());
-                    Console.WriteLine(a * 4);
-                    Console.WriteLine(3.14159265358979323846 * a * a);
-
-                    //2 task
-                    Console.Write("What is your name?: ");
-                    string name = Console.ReadLine();
-                    Console.Write($"How old are you? {name}: ");
-                    int age = int.Parse(Console.ReadLine());
-                    Console.WriteLine($"Your name is {name} and you are {age}");
-
-
-                    //3 task
-                    Console.Write("Enter a value: ");
-                    double r = double.Parse(Console.ReadLine());
-                    Console.WriteLine($"The length is {2 * 3.14 * r}, area is {r * r * 3.14}, volume is {4 / 3 * 3.14 * r * r * r}.");
-                    Console.ReadLine();
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-
-
-
-
+            return String.Format("Your dog: name is {0}, mark is {1} and it is {2} years old.", Name, Mark, Age);
         }
+    }
+    static void Task4()
+    {
+        Dog myDog;
+        Console.WriteLine("Enter name of your dog: ");
+        string name = Console.ReadLine();
+        Console.WriteLine("Enter mark of your dog: ");
+        string mark = Console.ReadLine();
+        Console.WriteLine("Enter name of your dog: ");
+        float age = float.Parse(Console.ReadLine());
 
+        myDog.Name = name;
+        myDog.Mark = mark;
+        myDog.Age = age;
 
-
-
-
+        Console.WriteLine(myDog);
     }
 }
-
