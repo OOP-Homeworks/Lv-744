@@ -107,7 +107,7 @@ namespace Test
         {
             int year = int.Parse(Console.ReadLine());
 
-            if (year == 366)
+            if (year % 4 == 0)
             {
                 Console.WriteLine("Leap year");
             }
