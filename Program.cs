@@ -1,57 +1,58 @@
-﻿using System;
-
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml.Schema;
 
-namespace ConsoleApp21
+
+namespace hw_1_Taranko
+
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            try
-            {
-                while (true)
-                {
-                    Console.Clear();
-                    //1 task
-                    Console.Write("Enter a value: ");
-                    int a = int.Parse(Console.ReadLine());
-                    Console.WriteLine(a * 4);
-                    Console.WriteLine(3.14159265358979323846 * a * a);
 
-                    //2 task
-                    Console.Write("What is your name?: ");
-                    string name = Console.ReadLine();
-                    Console.Write($"How old are you? {name}: ");
-                    int age = int.Parse(Console.ReadLine());
-                    Console.WriteLine($"Your name is {name} and you are {age}");
+            int a;
+            int sqareArea;
+            int sqarePerimeter;
+            Console.Write("Enter length of sqare side : ");
+            a = Int32.Parse(Console.ReadLine());
+            sqareArea = a * a;
+            sqarePerimeter = a * 4;
+            Console.WriteLine("Area - {0} , Perimeter - {1}", sqareArea, sqarePerimeter);
+            
 
+            string name;
+            int age;
+            Console.WriteLine("What is your name ?");
+            name = Console.ReadLine();
+            Console.WriteLine("How old are you, {0} ?",name);
+            age = Int32.Parse(Console.ReadLine());
+            Console.WriteLine("Name - {0}, Age - {1}", name, age);
 
-                    //3 task
-                    Console.Write("Enter a value: ");
-                    double r = double.Parse(Console.ReadLine());
-                    Console.WriteLine($"The length is {2 * 3.14 * r}, area is {r * r * 3.14}, volume is {4 / 3 * 3.14 * r * r * r}.");
-                    Console.ReadLine();
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-
-
+            double r;
+            double circleLength;
+            double circleArea;
+            double circleVolume;
+            Console.Write("Enter radius of circle : ");
+            r = Double.Parse(Console.ReadLine());
+            circleLength = 2 * Math.PI * r;
+            circleArea = Math.PI * r * r;
+            circleVolume = (4 * Math.PI * r * r * r) / 3;
+            Console.WriteLine("Length - {0}, Area - {1}, Volume - {2}", 
+                circleLength, circleArea, circleVolume);
 
 
+
+            Console.ReadLine();
         }
-
-
-
-
-
     }
 }
+
+
+
+
+
+
 
