@@ -1,7 +1,13 @@
-﻿using System;
-using System.Globalization;
 
-namespace hw_2_Taranko
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Xml.Schema;
+
+namespace ConsoleApp21
+
 {
     internal class Program
     {
@@ -107,12 +113,14 @@ namespace hw_2_Taranko
             for (int i = 0; i < inrArr.Length; i++) {
                 if (inrArr[i] < min)
                 {
+
                     min = inrArr[i];
                 }
                 else if (inrArr[i] > max) {
                     max = inrArr[i];
-                }
-            }
+
+                    Console.Clear();
+
             Console.WriteLine("Min number : {0} , Max number {1}", min, max);
         }
         //Task3_Func
@@ -141,6 +149,8 @@ namespace hw_2_Taranko
             else {
                 Console.WriteLine("No such error");
             }
+
+
         }
     }
 }
