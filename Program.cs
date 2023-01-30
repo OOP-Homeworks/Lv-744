@@ -1,57 +1,115 @@
 ﻿using System;
 
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Schema;
-
-namespace ConsoleApp21
+namespace HW_3_2023
 {
-    internal class Program
+    class Program
     {
+
         static void Main(string[] args)
         {
-            try
+            //Task_1
+
+            Console.Write("Enter your string : ");
+            string str = Console.ReadLine();
+            int countA = 0,
+                countO = 0,
+                countI = 0,
+                countE = 0;
+
+            for (int i = 0; i < str.Length; i++)
             {
-                while (true)
+                if (str[i] == 'a')
+                    countA++;
+                if (str[i] == 'o')
+                    countO++;
+                if (str[i] == 'i')
+                    countI++;
+                if (str[i] == 'e')
+                    countE++;
+            }
+            Console.WriteLine(" You have \n A - {0}  \n O - {1} \n I - {2}  \n E - {3}", countA, countO, countI, countE);
+
+            //Task_2
+
+            Console.Write("\nEnter number of month : ");
+
+            int numberOfMonth = int.Parse(Console.ReadLine());
+
+            switch (numberOfMonth)
+            {
+                case 1:
+                case 3:
+                case 5:
+                case 7:
+                case 8:
+                case 10:
+                case 12:
+                    Console.WriteLine("Month have 31 days");
+                    break;
+                case 4:
+                case 6:
+                case 9:
+                case 11:
+                    Console.WriteLine("Month have 30 days");
+                    break;
+                case 2:
+                    Console.Write("Enter a year of this month : ");
+                    int year = int.Parse(Console.ReadLine());
+                    if (DateTime.IsLeapYear(year))
+                        Console.Write("Year is leap, February have 29 days");
+                    else
+                        Console.Write("Year does not leap, February have 28 days");
+                    break;
+                default:
+                    Console.Write("Month does not exist !");
+                    break;
+
+            }
+
+            //Task_3
+
+            int[] arr = new int[10] { -10, 2, 3, 4, 5, 6, 7, 8, 9, 1 };
+            int sum = 0;
+            int mult = 1;
+            int counter = 0;
+            int[] arrMult = arr[5..];
+            bool isPositive = false;
+
+            for (int i = 0; i < arr[5]; i++)
+            {
+                if (arr[i] > 0)
                 {
-                    Console.Clear();
-                    //1 task
-                    Console.Write("Enter a value: ");
-                    int a = int.Parse(Console.ReadLine());
-                    Console.WriteLine(a * 4);
-                    Console.WriteLine(3.14159265358979323846 * a * a);
-
-                    //2 task
-                    Console.Write("What is your name?: ");
-                    string name = Console.ReadLine();
-                    Console.Write($"How old are you? {name}: ");
-                    int age = int.Parse(Console.ReadLine());
-                    Console.WriteLine($"Your name is {name} and you are {age}");
-
-
-                    //3 task
-                    Console.Write("Enter a value: ");
-                    double r = double.Parse(Console.ReadLine());
-                    Console.WriteLine($"The length is {2 * 3.14 * r}, area is {r * r * 3.14}, volume is {4 / 3 * 3.14 * r * r * r}.");
-                    Console.ReadLine();
+                    counter++;
+                }
+                else
+                {
+                    break;
                 }
             }
-            catch (Exception e)
+            if (counter == 5)
+                isPositive = true;
+            if (isPositive == true)
             {
-                Console.WriteLine(e.Message);
+                {
+                    for (int j = 0; j <= 4; j++)
+                        sum += arr[j];
+                }
+                Console.WriteLine("\nSum of first five integers of array is : {0}", sum);
             }
-
-
-
-
+            else
+            {
+                for (int k = 0; k < arrMult.Length; k++)
+                {
+                    mult *= arrMult[k];
+                }
+                Console.WriteLine("\nMultiplie of last 5 integers of array is : {0}", mult);
+            }
+            Console.Write("Array  : ");
+            foreach (var item in arr)
+            {
+                Console.Write(" {0}",item);
+            }
         }
-
-
-
-
-
     }
-}
 
+}
