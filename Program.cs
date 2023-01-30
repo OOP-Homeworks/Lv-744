@@ -1,11 +1,4 @@
-﻿using System;
 
-namespace HW_1_2023
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {
             //Task_1
 
             int area, perimeter, side;
@@ -40,3 +33,5 @@ namespace HW_1_2023
         }
     }
 }
+
+
