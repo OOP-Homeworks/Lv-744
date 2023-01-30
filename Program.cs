@@ -1,3 +1,4 @@
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -5,13 +6,19 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace hw_1_Taranko
 
-{
-    internal class Program
-    {
-        static void Main(string[] args)
-        {
+            //Task_1
+
+            int area, perimeter, side;
+            Console.Write("Enter square side : ");
+            side = int.Parse(Console.ReadLine());
+
+            perimeter = side * 2;
+            area = (int)Math.Pow(side,2);
+            Console.WriteLine($"Area = {area}, perimeter = {perimeter}");
+
+            //Task_2
+
 
             int a;
             int sqareArea;
@@ -49,10 +56,5 @@ namespace hw_1_Taranko
         }
     }
 }
-
-
-
-
-
 
 
