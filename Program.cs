@@ -1,211 +1,225 @@
+﻿using System;
+using System.Linq;
 
-namespace HW_3_2023
+namespace Task_3_2023
 {
     class Program
     {
 
-        static void Main(string[] args)
+
+        enum Drinks
         {
-            //Task_1
-
-            Console.Write("Enter your string : ");
-            string str = Console.ReadLine();
-            int countA = 0,
-                countO = 0,
-                countI = 0,
-                countE = 0;
-
-            for (int i = 0; i < str.Length; i++)
-            {
-                if (str[i] == 'a')
-                    countA++;
-                if (str[i] == 'o')
-                    countO++;
-                if (str[i] == 'i')
-                    countI++;
-                if (str[i] == 'e')
-                    countE++;
-            }
-            Console.WriteLine(" You have \n A - {0}  \n O - {1} \n I - {2}  \n E - {3}", countA, countO, countI, countE);
-
-            //Task_2
-
-            Console.Write("\nEnter number of month : ");
-
-            int numberOfMonth = int.Parse(Console.ReadLine());
-
-            switch (numberOfMonth)
-            {
-                case 1:
-                case 3:
-                case 5:
-                case 7:
-                case 8:
-                case 10:
-                case 12:
-                    Console.WriteLine("Month have 31 days");
-                    break;
-                case 4:
-                case 6:
-                case 9:
-                case 11:
-                    Console.WriteLine("Month have 30 days");
-                    break;
-                case 2:
-                    Console.Write("Enter a year of this month : ");
-                    int year = int.Parse(Console.ReadLine());
-                    if (DateTime.IsLeapYear(year))
-                        Console.Write("Year is leap, February have 29 days");
-                    else
-                        Console.Write("Year does not leap, February have 28 days");
-                    break;
-                default:
-                    Console.Write("Month does not exist !");
-                    break;
-
-            }
-
-            //Task_3
-
-
-            int erorNum;
-            Console.Write("Enter error numer : ");
-            while (!int.TryParse(Console.ReadLine(), out erorNum))
-            {
-                Console.Write("Enter correct int numer : ");
-            }
-            HttpErrorChecker(erorNum);
-            Console.Write("\n\n\n");
-            //Task4
-            string name;
-            int mark;
-            int age;
-            Console.Write("Enter dog's name : ");
-            name = Console.ReadLine();
-            Console.Write("Enter dog's mark : ");
-            while (!int.TryParse(Console.ReadLine(), out mark))
-            {
-                Console.Write("Enter correct dog's mark : ");
-            }
-            Console.Write("Enter dog's age : ");
-            while (!int.TryParse(Console.ReadLine(), out age))
-            {
-                Console.Write("Enter correct dog's age : ");
-            }
-            Dog dog1 = new Dog(name, mark, age);
-            Console.WriteLine("{0}",dog1.ToString());
-            Console.ReadLine();
+            coffee,
+            juice,
+            tea,
+            water
         }
-        //Task1_Func
-        static void RangeChecker(float num, float min, float max)
+
+        static int Sum(int myValue)
         {
-            if (num >= min && num <= max)
-            {
-                Console.WriteLine("Nunber {0} is in range [{1} ; {2}]", num, min, max);
-            }
-            else {
-                Console.WriteLine("Nunber {0} isn't in range [{1} ; {2}]", num, min, max);
-            }
+            if (myValue < 10)
+                return myValue;
+            int digit = myValue % 10;
+            int nextDigit = myValue / 10;
+            return digit + Sum(nextDigit);
         }
-        //Task2_Func
-        static void MinMaxChecker(int[] inrArr)
+        static void  IsOddDigits(int consoleInput)
         {
-            int min = inrArr[0];
-            int max = inrArr[0];
-            for (int i = 0; i < inrArr.Length; i++) {
-                if (inrArr[i] < min)
+            bool isOdd;
+
+            do
+            {
+
+                int digit = consoleInput % 10;
+                if (digit % 2 == 1)
                 {
-
-                    min = inrArr[i];
-                }
-                else if (inrArr[i] > max) {
-                    max = inrArr[i];
-
-                    Console.Clear();
-
-            Console.WriteLine("Min number : {0} , Max number {1}", min, max);
-        }
-        //Task3_Func
-        static void HttpErrorChecker(int erorNum)
-        {
-            if (erorNum >= 100 && erorNum <= 199)
-            {
-                Console.WriteLine("{0} error", HttpErors.Informational);
-            }
-            else if (erorNum >= 200 && erorNum <= 299)
-            {
-                Console.WriteLine("{0} error", HttpErors.Successful);
-            }
-            else if (erorNum >= 300 && erorNum <= 399)
-            {
-                Console.WriteLine("{0} error", HttpErors.Redirect);
-            }
-            else if (erorNum >= 400 && erorNum <= 499)
-            {
-                Console.WriteLine("{0} error", HttpErors.Client);
-            }
-            else if (erorNum >= 500 && erorNum <= 599)
-            {
-                Console.WriteLine("{0} error", HttpErors.Server);
-            }
-            else {
-                Console.WriteLine("No such error");
-            }
-
-
-        double l3 = 2 * Math.PI * radius;
-        Console.WriteLine($"Lenght = {l3:N2}");
-
-        double s3 = Math.PI * Math.Pow(radius, 2);
-        Console.WriteLine($"Area = {s3:N2}");
-
-        double v3 = (4 / 3) * Math.PI * Math.Pow(radius, 3);
-        Console.WriteLine($"Volume = {v3:N2}");
-
-
-            int[] arr = new int[10] { -10, 2, 3, 4, 5, 6, 7, 8, 9, 1 };
-            int sum = 0;
-            int mult = 1;
-            int counter = 0;
-            int[] arrMult = arr[5..];
-            bool isPositive = false;
-
-            for (int i = 0; i < arr[5]; i++)
-            {
-                if (arr[i] > 0)
-                {
-                    counter++;
+                    isOdd = true;
+                    Console.WriteLine("{0} is odd {1}", digit, isOdd);
                 }
                 else
                 {
-                    break;
+                    isOdd = false;
+                    Console.WriteLine("{0} is odd {1}", digit, isOdd);
                 }
-            }
-            if (counter == 5)
-                isPositive = true;
-            if (isPositive == true)
+                consoleInput /= 10;
+
+            } while (consoleInput >= 1);
+            
+        }
+        static void Main(string[] args)
+        {
+            //Task1();
+            //Task2();
+            //Task3();
+            //Task4();
+            //Task5();
+            //Task6();
+            //Task7();
+            Task7_1();
+            
+            
+
+
+
+            static void Task1()
             {
+
+                int counter = 0, number = 0;
+                int input1 = 0, input2 = 0;
+                Console.WriteLine("Enter two integer numbers : ");
+                try
                 {
-                    for (int j = 0; j <= 4; j++)
-                        sum += arr[j];
+                    input1 = Convert.ToInt32(Console.ReadLine());
+                    input2 = Convert.ToInt32(Console.ReadLine());
+
                 }
-                Console.WriteLine("\nSum of first five integers of array is : {0}", sum);
-            }
-            else
-            {
-                for (int k = 0; k < arrMult.Length; k++)
+                catch (Exception)
                 {
-                    mult *= arrMult[k];
+                    Console.WriteLine("Format exeption, try again..");
                 }
-                Console.WriteLine("\nMultiplie of last 5 integers of array is : {0}", mult);
+                for (int i = input1; i < input2; i++)
+                {
+                    number = i % 3;
+                    if (number == 0)
+                    {
+                        counter++;
+                    }
+                }
+                Console.WriteLine("Division without residue = " + counter);
             }
-            Console.Write("Array  : ");
-            foreach (var item in arr)
+
+            static void Task2()
             {
-                Console.Write(" {0}",item);
+
+                Console.Write("\nEnter some text to console : ");
+                string input = Console.ReadLine();
+                char[] array = input.ToCharArray();
+
+                for (int i = 1; i < input.Length; i++, i++)
+                    Console.Write("  {0}", array[i]);
+            }
+
+            static void Task3()
+            {
+
+                Console.WriteLine("\nWhat do you want to drink ? ");
+                string str = Console.ReadLine();
+
+                switch (str)
+                {
+                    case "coffee":
+                        Console.WriteLine(Drinks.coffee + " cost 2$");
+                        break;
+                    case "juice":
+                        Console.WriteLine(Drinks.juice + " cost 1.5$");
+                        break;
+                    case "tea":
+                        Console.WriteLine(Drinks.tea + " cost 1$");
+                        break;
+                    case "water":
+                        Console.WriteLine(Drinks.water + " cost 0.5$");
+                        break;
+                    default:
+                        Console.WriteLine("We dont have this drink(");
+                        break;
+
+                }
+            }
+
+            static void Task4()
+            {
+
+                int inp = 0, summa = 0, count = 0;
+                double avarage;
+                Console.WriteLine("\nEnter integer numbers : ");
+                for (; ; )
+                {
+                    inp = Convert.ToInt32(Console.ReadLine());
+                    if (inp >= 0)
+                    {
+                        summa += inp;
+                        count++;
+                    }
+                    else
+                    {
+                        avarage = (double)summa / count;
+                        Console.WriteLine("You enter negative integer. Avarage of positive integers = {0}", avarage);
+                        break;
+                    }
+                }
+            }
+
+            static void Task5()
+            {
+
+                int year = 0;
+                Console.WriteLine("\nEnter year : ");
+                try
+                {
+                    year = int.Parse(Console.ReadLine());
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Format exeption. ");
+                }
+                if (DateTime.IsLeapYear(year))
+                {
+                    Console.WriteLine("{0} is a leap year.", year);
+                }
+                else
+                {
+                    Console.WriteLine("{0} is NOT a leap year.", year);
+                }
+            }
+
+            static void Task6()
+            {
+
+                Console.WriteLine("Enter your number : ");
+                int myValue = int.Parse(Console.ReadLine());
+                int res = Sum(myValue);
+                
+                Console.WriteLine("Result = {0}", res);
+            }
+            static void Task7_1()
+            {
+                int consoleInput = Convert.ToInt32(Console.ReadLine());
+                IsOddDigits(consoleInput);
+            }
+
+            static void Task7()
+            {
+                Console.WriteLine("Enter integer number : ");
+                int myString = int.Parse(Console.ReadLine());
+                bool isOdd;
+
+                do
+                {
+
+                    int digit = myString % 10;
+                    if (digit % 2 == 1)
+                    {
+                        isOdd = true;
+                        Console.WriteLine("{0} is odd {1}", digit, isOdd);
+                    }
+                    else
+                    {
+                        isOdd = false;
+                        Console.WriteLine("{0} is odd {1}", digit, isOdd);
+                    }
+                    myString /= 10;
+
+                } while (myString >= 1);
             }
         }
+
+
+
+
+
+
     }
+
 
 
 }
