@@ -1,15 +1,18 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace hw_1_Taranko
+
 {
     internal class Program
     {
         static void Main(string[] args)
         {
+
             int a;
             int sqareArea;
             int sqarePerimeter;
@@ -46,3 +49,10 @@ namespace hw_1_Taranko
         }
     }
 }
+
+
+
+
+
+
+
