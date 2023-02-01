@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -32,24 +32,22 @@ namespace SoftServe
                     color = value;
                 else
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine($"The value of {value} is invalid!");
-                    Console.ResetColor();
+                    
                 }
             }
         }
         public string Name
         {
             get { return name; }
-           
+
         }
-        public decimal Price 
+        public decimal Price
         {
             get { return price; }
         }
 
 
-        public  void Input()
+        public void Input()
         {
             Console.WriteLine("Enter data about cars: ");
             Console.Write("Name:");
@@ -62,19 +60,19 @@ namespace SoftServe
 
 
         }
-        public  void Print()
+        public void Print()
         {
             Console.WriteLine();
             Input();
             Console.WriteLine();
-            
+
         }
-        public override string ToString() 
+        public override string ToString()
         {
-            
-            return($"The name: {name}\nColor is: {color} \nPrice: {price}");
+            Console.WriteLine();
+            return ($"The name: [{name}]\nColor is: [{color}] \nPrice: [{price}]");
         }
-        public  double ChangePrice() 
+        public double ChangePrice()
         {
             double percent = (double)price - (double)(price / 10);
             return percent;
@@ -101,7 +99,7 @@ namespace SoftServe
 
 
 
-        public Car() 
+        public Car()
         {
 
         }
