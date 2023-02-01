@@ -10,23 +10,23 @@ namespace SoftServe
     {
         static void Main(string[] args)
         {
-            //Console.Write("Enter a color: ");
-            //string color = Console.ReadLine();
-            //Car car = new Car(color);
-            //Car car2 = new Car(color);
-            //Car car3 = new Car(color);
-            //Console.WriteLine(car.ToString());
-            //Console.WriteLine(car2.ToString());
-            //Console.WriteLine(car3.ToString());
+            Console.Write("Enter a color: ");
+            string color = Console.ReadLine();
+            Car car = new Car(color);
+            Car car2 = new Car(color);
+            Car car3 = new Car(color);
+            Console.WriteLine(car.ToString());
+            Console.WriteLine(car2.ToString());
+            Console.WriteLine(car3.ToString());
 
             
-            //car.Print();
-            //car2.Print();
-            //car3.Print();
-            //Console.WriteLine(car.ToString());
-            //Console.WriteLine(car2.ToString());
-            //Console.WriteLine(car3.ToString());
-            //Console.WriteLine(car.ChangePrice());
+            car.Print();
+            car2.Print();
+            car3.Print();
+            Console.WriteLine(car.ToString());
+            Console.WriteLine(car2.ToString());
+            Console.WriteLine(car3.ToString());
+            Console.WriteLine(car.ChangePrice());
 
 
 
