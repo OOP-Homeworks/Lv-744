@@ -1,6 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,7 +20,7 @@ namespace SoftServe
             Console.WriteLine(car2.ToString());
             Console.WriteLine(car3.ToString());
 
-            
+
             car.Print();
             car2.Print();
             car3.Print();
@@ -27,11 +28,13 @@ namespace SoftServe
             Console.WriteLine(car2.ToString());
             Console.WriteLine(car3.ToString());
             Console.WriteLine(car.ChangePrice());
+            Console.WriteLine();
+
 
 
 
             //HomeWork
-
+            
             Person person1 = new Person();
             Person person2 = new Person();
             Person person3 = new Person();
