@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,32 +15,32 @@ namespace SoftServe
         {
             get { return name; }
         }
-        public int Years 
+        public int Years
         {
             get { return birthYears; }
         }
 
-        public Person() 
+        public Person()
         {
 
         }
-        public int Age() 
+        public int Age()
         {
             birthYears = Years + Years;
             return birthYears;
         }
-        public void Input() 
+        public void Input()
         {
-           Console.WriteLine("Enter a name:");
-           name = Console.ReadLine();
-           Console.WriteLine("Enter age: ");
-           birthYears = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter a name:");
+            name = Console.ReadLine();
+            Console.WriteLine("Enter age: ");
+            birthYears = int.Parse(Console.ReadLine());
         }
         public void ChangeName()
         {
             Console.WriteLine("You can change your name: ");
             name = Console.ReadLine();
-            if (birthYears < 16) 
+            if (birthYears < 16)
             {
                 Console.WriteLine("Very Young");
             }
@@ -49,12 +49,12 @@ namespace SoftServe
         {
             return $"{name},{birthYears}";
         }
-        public void Output() 
+        public void Output()
         {
             ToString();
         }
 
-        public static bool  operator ==(Person person, Person person1) 
+        public static bool operator ==(Person person, Person person1)
         {
             return person.Name == person1.Name;
 
