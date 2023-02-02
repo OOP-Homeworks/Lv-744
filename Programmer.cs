@@ -107,27 +107,27 @@ namespace _1w
 
 
 
-            //task 2 
-            //Dictionary<uint, string> dictionary = new Dictionary<uint, string>();
-            //Console.Write("Enter pair: ");
-            //int pairs = int.Parse(Console.ReadLine());
-            //uint id = 0;
-            //string Name = "";
-            //for (int i = 0; i < pairs; i++)
-            //{
-            //    Console.Write("Enter your ID: ");
-            //    id = uint.Parse(Console.ReadLine());
-            //    Console.Write("Enter your name: ");
-            //    Name = Console.ReadLine();
-            //    dictionary.Add(id, Name);
-            //}
+            //task 2
+            Dictionary<uint, string> dictionary = new Dictionary<uint, string>();
+            Console.Write("Enter pair: ");
+            int pairs = int.Parse(Console.ReadLine());
+            uint id = 0;
+            string Name = "";
+            for (int i = 0; i < pairs; i++)
+            {
+                Console.Write("Enter your ID: ");
+                id = uint.Parse(Console.ReadLine());
+                Console.Write("Enter your name: ");
+                Name = Console.ReadLine();
+                dictionary.Add(id, Name);
+            }
 
-            //Console.Write("Enter your ID: ");
-            //uint ID = uint.Parse(Console.ReadLine());
-            //Console.Write("Enter your Name: ");
-            //string name = Console.ReadLine();
-            //Console.WriteLine(id.CompareTo(ID));
-            //Console.WriteLine(name.CompareTo(Name));
+            Console.Write("Enter your ID: ");
+            uint ID = uint.Parse(Console.ReadLine());
+            Console.Write("Enter your Name: ");
+            string name = Console.ReadLine();
+            Console.WriteLine(id.CompareTo(ID));
+            Console.WriteLine(name.CompareTo(Name));
 
 
 
