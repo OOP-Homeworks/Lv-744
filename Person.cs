@@ -40,7 +40,7 @@ namespace SoftServe
         {
             Console.WriteLine("You can change your name: ");
             name = Console.ReadLine();
-            if (birthYears < 16)
+            if (birthYears < 2003)
             {
                 Console.WriteLine("Very Young");
             }
