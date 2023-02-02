@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
@@ -22,24 +22,30 @@ namespace _1w
     class Programmer : IDeveloper
     {
         string language;
+
+        public string Tool
+        {
+            get;
+        }
+        public Programmer(string language)
+        {
+            this.language = language;
+        }
+
         public void Create()
         {
-            Console.WriteLine($"{language} created"); ;
+            
+                Console.WriteLine($"{this.language} created");
+           
         }
         public void Destroy()
         {
             language = language.Remove(0);
         }
-        public string Tool
-        {
-            get;
-        }
+        
 
 
-        public Programmer(string language)
-        {
-            language = this.language;
-        }
+        
 
 
     }
@@ -48,7 +54,7 @@ namespace _1w
         string tool;
         public void Create()
         {
-            tool = Console.ReadLine();
+            tool = "m";
         }
         public void Destroy()
         {
@@ -87,12 +93,16 @@ namespace _1w
             Builder build = new Builder("vs");
             Builder build1 = new Builder("vs code");
 
-            List<string> list = new List<string>();
+            List<IDeveloper> list = new List<IDeveloper>();
             list.Add(dev);
             list.Add(dev1);
             list.Add(build);
             list.Add(build1);
-            Console.WriteLine(build);
+            list[0].Create();
+            list[1].Create();
+            list[2].Create();
+            list[3].Create();
+
 
 
 
