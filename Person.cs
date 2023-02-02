@@ -26,7 +26,7 @@ namespace SoftServe
         }
         public int Age()
         {
-            birthYears = Years + Years;
+            
             return birthYears;
         }
         public void Input()
