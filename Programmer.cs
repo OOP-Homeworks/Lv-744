@@ -54,7 +54,7 @@ namespace _1w
         string tool;
         public void Create()
         {
-            tool = "m";
+            Console.WriteLine($"{this.tool} created");
         }
         public void Destroy()
         {
