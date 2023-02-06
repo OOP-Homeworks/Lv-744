@@ -1,11 +1,14 @@
 ﻿using System;
 
 namespace Task_4_2023
+
+
 {
     class Program
     {
         static void Main(string[] args)
         {
+
             Car car1 = new Car();
             car1.Input();
             Car car2 = new Car();
@@ -41,6 +44,4 @@ namespace Task_4_2023
 
 
 
-        }
-    }
-}
+
