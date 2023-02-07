@@ -1,84 +1,102 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 
-namespace Task_5_2_2023
+namespace HW_6_2023
 {
     class Program
     {
-
-
-
+        public static int Div(int i1, int i2)
+        {
+            return i1 / i2;
+        }
+        public static double DivD(double i, double j)
+        {
+            return i / j;
+        }
         static void Main(string[] args)
         {
-            List<int> myColl = new List<int> { -10, 10, -10, 10, 24, -20, -10, 6, 10, 55 };
 
-            for (int i = 0; i < myColl.Count; i++)
+            try
             {
-                    
-                if (i == myColl.IndexOf(-10))
+                Console.WriteLine("Enter two int numbers");
+                Console.Write(" Enter first int : ");
+                int inp1 = Int32.Parse(Console.ReadLine());
+                Console.Write("Enter second int : ");
+                int inp2 = Int32.Parse(Console.ReadLine());
+                Console.WriteLine(Div(inp1, inp2));
+                if (inp1 % inp2 == 1 && inp2 > inp1)
                 {
-                    Console.WriteLine($"Integer -10 at position :{i} ");
-                    myColl.Remove(myColl[i]);
-                    myColl.Insert(i, 10);
+                    throw new Exception("input exeption");
                 }
-            }            
-            //myColl = myColl.Select((value, index) => new { value, index }).Where(x => x.value == -10).Select(x => x.index).ToList();
-            myColl.Insert(2, 1);
-            myColl.Insert(8, -3);
-            myColl.Insert(5, -4);
-            myColl.RemoveAll(x => x > 20);
-            myColl.Sort();
-            foreach (int item in myColl)
-            {
-                Console.Write(" | " + item);
+                Console.WriteLine("Enter two double numbers");
+                Console.Write(" Enter first double : ");
+                double in1 = Double.Parse(Console.ReadLine());
+                Console.Write("Enter second int : ");
+                double in2 = Double.Parse(Console.ReadLine());
+                Console.WriteLine(DivD(in1, in2));
+                if (in2 > in1)
+                {
+                    throw new Exception("input exeption");
+                }
             }
-          
+            catch (FormatException)
+            {
+                Console.WriteLine("Format exeption. Enter integer number");
+            }
+            catch (DivideByZeroException)
+            {
+                Console.WriteLine("DivideByZeroException");
+            }
+            catch (ApplicationException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            ReadNumber(1, 100);
+            Mein();
+
+        }
+        public static int ReadNumber(int start, int end)
+        {
+            Console.WriteLine("//////////   Method ReadNumber   //////////");
+            try
+            {  
+                Console.Write("Enter New Integer to check it in the renge : ");
+                int input = Int32.Parse(Console.ReadLine());
+                if (input < start && input > end)
+                {
+                    throw new ArgumentOutOfRangeException("Argument is out of renge!");
+                }
+                else
+                {
+                Console.WriteLine($"Your integer {input} is in the renge {start} - {end}");
+                }
+            }
+            catch (FormatException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (ApplicationException ap)
+            {
+                Console.WriteLine(ap.Source);
+            }
+            finally
+            {
+                Console.WriteLine($"End of Method ReadNumber");
+            }
+            return start + '-' + end;
+
+
+        }
+        public static int Mein()
+        {
+            const int maxInt = 10;
+            Random rand = new Random();
+            Console.WriteLine("//////////   Method Main   //////////");
+            for (int i = 0; i < maxInt; i++)
+            {
+                Console.WriteLine(rand.Next(1,100));
+            }
+            return maxInt;
 
         }
     }
 }
-
-
-
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {
-
-            Car car1 = new Car();
-            car1.Input();
-            Car car2 = new Car();
-            car2.Input();
-            Car car3 = new Car();
-            car3.Input();
-            car1.Output();
-            car2.Output();
-            car3.Output();
-            Console.Write("Enter sale percent : ");
-            double percent = Convert.ToDouble(Console.ReadLine());
-            car1.ChangePrice(percent);
-            car2.ChangePrice(percent);
-            car3.ChangePrice(percent);
-            Console.Write("Car data after change price SALE :");
-            car1.Output();
-            car2.Output();
-            car3.Output();
-            Console.Write("Enter color to repaint white cars : ");
-            string newColor = Console.ReadLine();
-            car1.Repaint(car1, newColor);
-            car2.Repaint(car2, newColor);
-            car3.Repaint(car3, newColor);
-            car1.Output();
-            car2.Output();
-            car3.Output();
-            Console.WriteLine("Checking same cars in garage : ");
-            if (car1 == car2) Console.WriteLine($"Same cars{car1.name} & {car2.name}");
-            else if (car1 == car3) Console.WriteLine($"Same cars {car1.name} & {car3.name}");
-            else if (car2 == car3) Console.WriteLine($"Same cars {car2.name} & {car3.name} ");
-            else Console.WriteLine("Not the same car ");
-
-
-
