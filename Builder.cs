@@ -6,24 +6,26 @@ using System.Threading.Tasks;
 
 namespace HW_5
 {
-    class Programmer : IDeveloper, IComparable
+    class Builder : IDeveloper, IComparable
     {
-
-        public string Tool { get { return lenguage; } set { lenguage = value; } }
+      
+        public string Tool { get { return tool; } set { tool = value; } }
         public void Create() 
         {
-            Console.WriteLine($"{name} programming by {this.lenguage}");
+            Console.WriteLine($"{name} build  program by {this.tool}");
         }
         public void Destroy() 
         {
-            Console.WriteLine($"{name} destroy code by {this.lenguage}");
+            Console.WriteLine($"{name} destroy without any {this.tool}");
         }
 
-        string lenguage, name;
-        public Programmer (string name, string lenguage) 
+        string tool;
+        string name;
+        public Builder(string name, string tool)
         {
             this.name = name;
-            this.lenguage = lenguage;
+            this.tool = tool;
+
         }
         public int CompareTo(object o)
         {
@@ -34,7 +36,9 @@ namespace HW_5
             else if (b != null)
                 return this.Tool.CompareTo(b.Tool);
             else
-                throw new ArgumentException("Object is not a Programmer");
+                throw new ArgumentException("Object is not a developer");
         }
+
+        
     }
 }
