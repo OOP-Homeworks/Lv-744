@@ -1,0 +1,55 @@
+using System;
+
+namespace ConsoleApp3
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Введіть довжину сторони квадрата");
+            int a = Convert.ToInt16(Console.ReadLine());
+            int Perimetr = a * 4;
+            int Area = a * a;
+            Console.WriteLine("Площа заданого квадрата - " + Area );
+            Console.WriteLine("Периметр задоного квадрата - " + Perimetr);
+        }
+    }
+}
+-----------------------------------------------
+using System;
+
+namespace ConsoleApp3
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("What is your name? ");
+            String a = Console.ReadLine();
+            Console.WriteLine("How old are you, "+ a);
+            int b = Convert.ToInt16(Console.ReadLine());
+            Console.WriteLine("Name - "+a);
+            Console.WriteLine("Age - "+b);
+        }
+    }
+}
+-------------------------------------------
+using System;
+
+namespace ConsoleApp3
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Введіть радіус кола");
+            Double r = Convert.ToInt16(Console.ReadLine());
+            Double i = 2 * 3.14 * r;
+            Double s = 3.14 * r * r;
+            Double v = 4/3 * 3.14 * r * r * r;
+            Console.WriteLine("Довжина кола - " +i);
+            Console.WriteLine("Площа кола - " + s);
+            Console.WriteLine("Об'єм кола - " + v);
+        }
+    }
+}
