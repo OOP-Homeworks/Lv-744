@@ -1,178 +1,205 @@
+﻿using System.Collections.Concurrent;
+using System.Diagnostics.Metrics;
 
-﻿using System;
-
-namespace HW_2_2023
+namespace Lecture3_744;
+class Program
 {
-    class Program
+    static void Main(string[] args)
     {
-        enum HttpErrors
-        { error400, error401, error402, error403 };
-        struct Cat
-        {
-            string name;
-            string mark;
-            int age;
-            public void getCatInfo(string n, string m, int a)
-            {
-                name = n;
-                mark = m;
-                age = a;
 
-            }
-            public void outPut()
+        Console.WriteLine("Tasks #3:");
+        showTask3();
+
+        Console.WriteLine("Homework #3:");
+        showHomework3();
+
+        Console.ReadKey();
+
+    }
+
+    static void showTask3()
+    {
+        /// task 1
+        /// 
+        Console.Write("\nEnter int number 1: ");
+        int a = Convert.ToInt32(Console.ReadLine());
+        Console.Write("Enter int number 2: ");
+        int b = Convert.ToInt32(Console.ReadLine());
+        if (a > b)
+        {
+            (a, b) = (b, a);
+        }
+        int count = 0;
+        for (int i = a; i <= b; i++)
+        {
+            if (i % 3 == 0)
             {
-                Console.WriteLine("Name : {0}", name);
-                Console.WriteLine("Mark : {0}", mark);
-                Console.WriteLine("Age : {0}", age);
+                count++;
+                Console.WriteLine($"{i}");
+            }
+        }
+        Console.WriteLine($"How many integers in the range divided by 3? ={count}");
+
+        /// task2
+        ///
+        Console.Write("\nEnter some string: ");
+        string word = Console.ReadLine();
+        word = " " + word;
+        Console.WriteLine("Each second char is ");
+        for (int i = 0; i < word.Length; i++)
+        {
+            if (i % 2 == 0)
+            {
+                Console.WriteLine($"{word[i]}");
             }
         }
 
-        static void Main(string[] args)
+        /// task3
+        ///
+        Console.Write("\nEnter the name of the drink (coffee, tea, juice, water): ");
+        string drink = Console.ReadLine();
+        switch (drink.ToLower())
         {
-            //Task_1
+            case "coffee":
+                Console.WriteLine($"{drink} cost 4$");
+                break;
+            case "tea":
+                Console.WriteLine($"{drink} cost 2$");
+                break;
+            case "juice":
+                Console.WriteLine($"{drink} cost 6$");
+                break;
+            case "water":
+                Console.WriteLine($"{drink} cost 1$");
+                break;
+            default:
+                Console.WriteLine("ops... wrong drink :(");
+                break;
+        }
 
-            Console.WriteLine("Enter 3 float variables : ");
-            float input1 = Convert.ToSingle(Console.ReadLine());
-            float input2 = Convert.ToSingle(Console.ReadLine());
-            float input3 = Convert.ToSingle(Console.ReadLine());
-            float minValue = -5, maxValue = 5;
-            Console.WriteLine(input1 < minValue && input1 > maxValue ? $"First var in renge" : "First var out of renge");
-            Console.WriteLine(input2 < minValue && input2 > maxValue ? $"Second var in renge" : "Second var out of renge");
-            Console.WriteLine(input3 < minValue && input3 > maxValue ? $"Third var in renge" : "Third var out of renge");
+        /// task 4
+        ///
+        Console.WriteLine("\nEnter a sequence of positive integers: ");
+        
+        int countSum = 0;
+        int sum = 0;
 
-            //Task_2
+        int currentNumber = Convert.ToInt32(Console.ReadLine());
+        while (currentNumber >= 0)
+        {
+            countSum++;
+            sum += currentNumber;
+            currentNumber = Convert.ToInt32(Console.ReadLine());
+        };
+        Console.WriteLine($"{sum} / {countSum} = {sum/countSum}");
 
-            Console.WriteLine("\nEnter 3 integer symbols : ");
-            int maxInt, minInt;
-            int a = Convert.ToInt32(Console.ReadLine());
-            int b = Convert.ToInt32(Console.ReadLine());
-            int c = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine(maxInt = a > b ? a : (b > c ? b : c));
-            Console.WriteLine(minInt = a < b ? a : (b < c ? b : c));
-=======
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+        /// task 5
+        ///
+        Console.Write("\nIs year a leap? Enter yaer: ");
+        int yaer = Convert.ToInt32(Console.ReadLine());
+        if (yaer % 4 == 0)
+        {
+            Console.WriteLine($"{yaer} is a leap!");
+        }
+        else
+        {
+            Console.WriteLine($"{yaer} is't a leap!");
+        }
 
-namespace Task_5_2_2023
-{
-    class Program
+        /// task 6
+        ///
+        Console.Write("\nSum of digits. Enter int: ");
+        string dString = Console.ReadLine();
+        int sumDigits = 0;
+        for (int i = 0; i < dString.Length; i++)
+        {
+            try
+            {
+                sumDigits += Convert.ToInt32(dString[i].ToString());
+            }
+            catch
+            {
+                Console.WriteLine($"symbol no#{i} doesn't digit!");
+            }
+        }
+        Console.WriteLine($"Sum of digits = {sumDigits}");
+
+        /// task 7
+        ///
+        Console.Write("\nOnly odd digits? Enter int: ");
+        string numString = Console.ReadLine();
+        bool isDigit = true;
+        for (int i = 0; i < numString.Length; i++)
+        {
+            if (Convert.ToInt32(numString[i].ToString()) % 2 != 0)
+            {
+                Console.WriteLine($"{numString[i]} is not odd digit!");
+                isDigit = false;
+            }
+        }
+        if (isDigit) { Console.WriteLine("Is all only odd digits!"); }
+
+    }
+
+    static void showHomework3()
     {
 
-
-
-        static void Main(string[] args)
+        /// hw 1
+        ///
+        Console.Write("\nEnter some string with (a, o, i, e): ");
+        string str = Console.ReadLine();
+        char[] charArray = { 'a', 'o', 'i', 'e' };
+        int countSymbInArray = 0;
+        for (int i = 0; i < str.Length; i++)
         {
-            List<int> myColl = new List<int> { -10, 10, -10, 10, 24, -20, -10, 6, 10, 55 };
-
-            for (int i = 0; i < myColl.Count; i++)
+            if (charArray.Contains(str[i]))
             {
-                    
-                if (i == myColl.IndexOf(-10))
+                countSymbInArray++;
+            }
+        }
+        Console.WriteLine($"{countSymbInArray} a/o/i/e in string");
+
+        /// hw 2
+        ///
+        Console.Write("\nEnter number of month: ");
+        int month = Convert.ToInt32(Console.ReadLine());
+        int[] daysInMonth = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+        if (month > 0 && month <= 12)
+        {
+            Console.WriteLine($"Month #{month} contains #{daysInMonth[month - 1]} days");
+        }
+
+        /// hw 3
+        ///
+        Console.WriteLine("\n10 int numbers.");
+        int[] arrNumb = new int[10];
+        for (int i = 0; i < 10; i++)
+        {
+            Console.Write($"Enter number {i+1} / 10: ");
+            arrNumb[i] = Convert.ToInt32(Console.ReadLine());
+        }
+        int sum_5 = 0;
+        int product_5 = 1;
+        bool needProduct = false;
+        for (int i = 0; i < 10; i++)
+        {
+            if (i < 5)
+            {
+                sum_5 += arrNumb[i];
+                if (arrNumb[i] < 0)
                 {
-                    Console.WriteLine($"Integer -10 at position :{i} ");
-                    myColl.Remove(myColl[i]);
-                    myColl.Insert(i, 10);
+                    needProduct = true;
                 }
-            }            
-            //myColl = myColl.Select((value, index) => new { value, index }).Where(x => x.value == -10).Select(x => x.index).ToList();
-            myColl.Insert(2, 1);
-            myColl.Insert(8, -3);
-            myColl.Insert(5, -4);
-            myColl.RemoveAll(x => x > 20);
-            myColl.Sort();
-            foreach (int item in myColl)
-            {
-                Console.Write(" | " + item);
             }
-          
-
-        }
-    }
-}
-
-
-            //Task_3
-
-            Console.WriteLine("\nEnter Http error cod : ");
-            int error = Convert.ToInt32(Console.ReadLine());
-            HttpErrors badRequest = HttpErrors.error400;
-            HttpErrors unautorized = HttpErrors.error401;
-            HttpErrors paymentRequired = HttpErrors.error402;
-            HttpErrors forbidden = HttpErrors.error403;
-
-
-            switch (error)
+            else
             {
-                case 400:
-                    Console.WriteLine($"{ badRequest}, Bad Request");
-                    break;
-                case 401:
-                    Console.WriteLine($"{ unautorized}, Unautorized");
-                    break;
-                case 402:
-                    Console.WriteLine($"{ paymentRequired}, PaymentRequired");
-                    break;
-                case 403:
-                    Console.WriteLine($"{ forbidden}, Forbidden");
-                    break;
+                product_5 *= arrNumb[i];
             }
-
-            //Task_4
-
-            Console.WriteLine("\nCat Info");
-            Cat cat1 = new Cat();
-            Cat cat2 = new Cat();
-            cat1.getCatInfo("Charlie", "Home", 12);
-            cat2.getCatInfo("Elise", "Scotland", 8);
-            cat1.outPut();
-            cat2.outPut();
-
-
-
         }
+
+        Console.WriteLine(needProduct ? product_5 : sum_5);
+
     }
+
 }
-
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {
-
-            Car car1 = new Car();
-            car1.Input();
-            Car car2 = new Car();
-            car2.Input();
-            Car car3 = new Car();
-            car3.Input();
-            car1.Output();
-            car2.Output();
-            car3.Output();
-            Console.Write("Enter sale percent : ");
-            double percent = Convert.ToDouble(Console.ReadLine());
-            car1.ChangePrice(percent);
-            car2.ChangePrice(percent);
-            car3.ChangePrice(percent);
-            Console.Write("Car data after change price SALE :");
-            car1.Output();
-            car2.Output();
-            car3.Output();
-            Console.Write("Enter color to repaint white cars : ");
-            string newColor = Console.ReadLine();
-            car1.Repaint(car1, newColor);
-            car2.Repaint(car2, newColor);
-            car3.Repaint(car3, newColor);
-            car1.Output();
-            car2.Output();
-            car3.Output();
-            Console.WriteLine("Checking same cars in garage : ");
-            if (car1 == car2) Console.WriteLine($"Same cars{car1.name} & {car2.name}");
-            else if (car1 == car3) Console.WriteLine($"Same cars {car1.name} & {car3.name}");
-            else if (car2 == car3) Console.WriteLine($"Same cars {car2.name} & {car3.name} ");
-            else Console.WriteLine("Not the same car ");
-
-
-
 
