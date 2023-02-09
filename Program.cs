@@ -1,146 +1,115 @@
-﻿using System;
-using System.Globalization;
+using System;
 
-namespace hw_2_Taranko
+namespace DivisionExample
 {
-    internal class Program
+    class Program
     {
-        //Task1_Consts
-        public const int COUNT_OF_CHACKING_RANGE = 3;
-        public const float MIN_OF_CHACKING_RANGE = -5.0f;
-        public const float MAX_OF_CHACKING_RANGE = 5.0f;
-        //Task1_Consts
-        public const int COUNT_OF_MIN_MAX_CHACKING = 3;
-        //Task3_Enum
-        enum HttpErors {
-            Informational,
-            Successful,
-            Redirect,
-            Client,
-            Server
-        }
-        //Task4_Struct
-        public struct Dog
-        {
-            public string name;
-            public int mark;
-            public int age;
-
-            public Dog(string name, int mark, int age)
-            {
-                this.name = name;
-                this.mark = mark;
-                this.age = age;
-            }
-            public override string ToString() => $"(Name - {name}, Mark - {mark}, Age - {age})";
-        }
         static void Main(string[] args)
         {
-            //Task1
-            float num;
-            for (int i = 0; i < COUNT_OF_CHACKING_RANGE; i++) {
-                Console.Write("Enter float numer : ");
-                while (!float.TryParse(Console.ReadLine().Replace(',', '.').Replace(".0",""), NumberStyles.Float ,
-                    CultureInfo.InvariantCulture, out num)){
+            Console.WriteLine("Enter the first number: ");
+            int num1 = int.Parse(Console.ReadLine());
 
-                    Console.Write("Enter correct float numer : ");
-                }
-                RangeChecker(num, MIN_OF_CHACKING_RANGE, MAX_OF_CHACKING_RANGE);
+            Console.WriteLine("Enter the second number: ");
+            int num2 = int.Parse(Console.ReadLine());
+
+            try
+            {
+                int result = Div(num1, num2);
+                Console.WriteLine("The result of the division is: " + result);
             }
-            Console.Write("\n\n\n");
-            //Task2
-            int[] inrArr = new int[COUNT_OF_MIN_MAX_CHACKING];
-            for (int i = 0; i < COUNT_OF_MIN_MAX_CHACKING; i++) {
-                Console.Write("Enter int numer : ");
-                while (!int.TryParse(Console.ReadLine(), out inrArr[i]))
+            catch (DivideByZeroException ex)
+            {
+                Console.WriteLine("Cannot divide by zero.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("An error occurred: " + ex.Message);
+            }
+            
+            //task 2
+            Console.WriteLine("Enter the first number: ");
+            double num1 = double.Parse(Console.ReadLine());
+
+            Console.WriteLine("Enter the second number: ");
+            double num2 = double.Parse(Console.ReadLine());
+
+            try
+            {
+                double result = Div2(num1, num2);
+                Console.WriteLine("The result of the division is: " + result);
+            }
+            catch (DivideByZeroException ex)
+            {
+                Console.WriteLine("Cannot divide by zero.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("An error occurred: " + ex.Message);
+            }
+            
+            
+            //task 3
+            
+             int start = 1;
+            int end = 100;
+            int lastNumber = start;
+
+            for (int i = 0; i < 10; i++)
+            {
+                try
                 {
-                    Console.Write("Enter correct float numer : ");
+                    int number = ReadNumber(start, end);
+                    if (number <= lastNumber)
+                    {
+                        throw new ArgumentException("Number must be greater than previous number.");
+                    }
+                    lastNumber = number;
                 }
-            }
-            MinMaxChecker(inrArr);
-            Console.Write("\n\n\n");
-            //Task3
-            int erorNum;
-            Console.Write("Enter error numer : ");
-            while (!int.TryParse(Console.ReadLine(), out erorNum))
-            {
-                Console.Write("Enter correct int numer : ");
-            }
-            HttpErrorChecker(erorNum);
-            Console.Write("\n\n\n");
-            //Task4
-            string name;
-            int mark;
-            int age;
-            Console.Write("Enter dog's name : ");
-            name = Console.ReadLine();
-            Console.Write("Enter dog's mark : ");
-            while (!int.TryParse(Console.ReadLine(), out mark))
-            {
-                Console.Write("Enter correct dog's mark : ");
-            }
-            Console.Write("Enter dog's age : ");
-            while (!int.TryParse(Console.ReadLine(), out age))
-            {
-                Console.Write("Enter correct dog's age : ");
-            }
-            Dog dog1 = new Dog(name, mark, age);
-            Console.WriteLine("{0}",dog1.ToString());
-            Console.ReadLine();
-        }
-        //Task1_Func
-        static void RangeChecker(float num, float min, float max)
-        {
-            if (num >= min && num <= max)
-            {
-                Console.WriteLine("Nunber {0} is in range [{1} ; {2}]", num, min, max);
-            }
-            else {
-                Console.WriteLine("Nunber {0} isn't in range [{1} ; {2}]", num, min, max);
-            }
-        }
-        //Task2_Func
-        static void MinMaxChecker(int[] inrArr)
-        {
-            int min = inrArr[0];
-            int max = inrArr[0];
-            for (int i = 0; i < inrArr.Length; i++) {
-                if (inrArr[i] < min)
+                catch (Exception ex)
                 {
-                    min = inrArr[i];
+                    Console.WriteLine("Error: " + ex.Message);
+                    i--;
                 }
-                else if (inrArr[i] > max) {
-                    max = inrArr[i];
-                }
-            }
-            Console.WriteLine("Min number : {0} , Max number {1}", min, max);
+              
         }
-        //Task3_Func
-        static void HttpErrorChecker(int erorNum)
+
+        static int Div(int num1, int num2)
         {
-            if (erorNum >= 100 && erorNum <= 199)
+            if (num2 == 0)
+                throw new DivideByZeroException();
+
+            return num1 / num2;
+        }
+         static double Div2(double num1, double num2)
+        {
+            if (num2 == 0)
+                throw new DivideByZeroException();
+
+            return num1 / num2;
+        }
+             static int ReadNumber(int start, int end)
+        {
+            Console.WriteLine("Enter an integer between " + start + " and " + end + ": ");
+            string input = Console.ReadLine();
+
+            try
             {
-                Console.WriteLine("{0} error", HttpErors.Informational);
+                int number = int.Parse(input);
+                if (number < start || number > end)
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+                return number;
             }
-            else if (erorNum >= 200 && erorNum <= 299)
+            catch (FormatException)
             {
-                Console.WriteLine("{0} error", HttpErors.Successful);
+                throw new FormatException("Invalid number format.");
             }
-            else if (erorNum >= 300 && erorNum <= 399)
+            catch (ArgumentOutOfRangeException)
             {
-                Console.WriteLine("{0} error", HttpErors.Redirect);
-            }
-            else if (erorNum >= 400 && erorNum <= 499)
-            {
-                Console.WriteLine("{0} error", HttpErors.Client);
-            }
-            else if (erorNum >= 500 && erorNum <= 599)
-            {
-                Console.WriteLine("{0} error", HttpErors.Server);
-            }
-            else {
-                Console.WriteLine("No such error");
+                throw new ArgumentOutOfRangeException("Number must be between " + start + " and " + end + ".");
             }
         }
     }
 }
+
