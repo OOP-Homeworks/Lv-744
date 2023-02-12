@@ -1,5 +1,3 @@
-﻿using System;
-
 namespace HW_6_2023
 {
     class Program
