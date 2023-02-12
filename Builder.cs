@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 namespace HW_5
 {
     class Builder : IDeveloper, IComparable
-    {
-      
+    {     
         public string Tool { get { return tool; } set { tool = value; } }
         public void Create() 
         {
@@ -18,7 +17,6 @@ namespace HW_5
         {
             Console.WriteLine($"{name} destroy without any {this.tool}");
         }
-
         string tool;
         string name;
         public Builder(string name, string tool)
@@ -37,8 +35,6 @@ namespace HW_5
                 return this.Tool.CompareTo(b.Tool);
             else
                 throw new ArgumentException("Object is not a developer");
-        }
-
-        
+        }    
     }
 }
