@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
 namespace HW_5_D
@@ -20,13 +20,6 @@ namespace HW_5_D
             input = Convert.ToUInt32(Console.ReadLine());
             Console.WriteLine((people.ContainsKey(input) ? $"Key was found : \n{input} - {people[input]}" :
                 $"Key {input} wasn't found "));
-
-
-
-
-
-
-
         }
     }
 }
