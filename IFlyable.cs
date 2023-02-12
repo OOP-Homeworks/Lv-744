@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Task_5_1_2023
+namespace Lecture5_744
 {
     interface IFlyable
     {
-        public void Fly() { }   
+        void Fly();
     }
 }

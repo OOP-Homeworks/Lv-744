@@ -4,24 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Task_5_1_2023
+namespace Lecture5_744
 {
-    class Bird : IFlyable
+    internal class Bird: IFlyable
     {
         string name;
         bool canFly;
-        
+
+        public void Fly()
+        {
+            Console.WriteLine($"Info about Bird. Name={name} canFly={canFly}");
+        }
+
         public Bird(string name, bool canFly)
         {
             this.name = name;
             this.canFly = canFly;
-        }
-        public void Fly()
-        {
-            Console.WriteLine($"Bird {name} can fly : {canFly} ");
-        }
-
-
+        }   
 
     }
 }

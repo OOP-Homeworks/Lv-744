@@ -4,21 +4,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Task_5_1_2023
+namespace Lecture5_744
 {
-    class Plane : IFlyable
+    internal class Plane: IFlyable , IComparable<Plane>
     {
         string mark;
-        uint highFly;
-        public Plane(string mark, uint highFly)
-        {
-            this.mark = mark;
-            this.highFly = highFly;
-        }
+        int hightFly;
         public void Fly()
         {
-            Console.WriteLine($"Plane {mark} flying on {highFly} meters");
+            Console.WriteLine($"Info about Plane. Mark={mark} highFly={hightFly}");
+        }
+        public Plane(string mark, int hightFly)
+        {
+            this.mark = mark;
+            this.hightFly = hightFly;
         }
 
+        public int CompareTo(Plane other)
+        {
+            return hightFly - other.hightFly;
+        }
     }
 }

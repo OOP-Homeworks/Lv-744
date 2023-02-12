@@ -1,178 +1,124 @@
+﻿using System.Collections;
+using System.ComponentModel.DataAnnotations;
+using System.Text.RegularExpressions;
 
-﻿using System;
-
-namespace HW_2_2023
+namespace Lecture5_744
 {
-    class Program
+    internal class Program
     {
-        enum HttpErrors
-        { error400, error401, error402, error403 };
-        struct Cat
+        static void Main(string[] args)
         {
-            string name;
-            string mark;
-            int age;
-            public void getCatInfo(string n, string m, int a)
-            {
-                name = n;
-                mark = m;
-                age = a;
 
-            }
-            public void outPut()
-            {
-                Console.WriteLine("Name : {0}", name);
-                Console.WriteLine("Mark : {0}", mark);
-                Console.WriteLine("Age : {0}", age);
-            }
+            //Console.WriteLine("\nTask#5");
+            //showTask5();
+
+            Console.WriteLine("\nHomework#5");
+            showHomework5();
+
         }
 
-        static void Main(string[] args)
+        static void showTask5() 
         {
-            //Task_1
+            
+            /// task1
+            /// 
+            Bird myBird1 = new Bird("Vorona",true);
+            IFlyable myBird2 = new Bird("Aist", false);
 
-            Console.WriteLine("Enter 3 float variables : ");
-            float input1 = Convert.ToSingle(Console.ReadLine());
-            float input2 = Convert.ToSingle(Console.ReadLine());
-            float input3 = Convert.ToSingle(Console.ReadLine());
-            float minValue = -5, maxValue = 5;
-            Console.WriteLine(input1 < minValue && input1 > maxValue ? $"First var in renge" : "First var out of renge");
-            Console.WriteLine(input2 < minValue && input2 > maxValue ? $"Second var in renge" : "Second var out of renge");
-            Console.WriteLine(input3 < minValue && input3 > maxValue ? $"Third var in renge" : "Third var out of renge");
+            Plane myPlane1 = new Plane("Airbus", 20);
+            IFlyable myPlane2 = new Plane("Stels",30);
 
-            //Task_2
-
-            Console.WriteLine("\nEnter 3 integer symbols : ");
-            int maxInt, minInt;
-            int a = Convert.ToInt32(Console.ReadLine());
-            int b = Convert.ToInt32(Console.ReadLine());
-            int c = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine(maxInt = a > b ? a : (b > c ? b : c));
-            Console.WriteLine(minInt = a < b ? a : (b < c ? b : c));
-=======
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Task_5_2_2023
-{
-    class Program
-    {
-
-
-
-        static void Main(string[] args)
-        {
-            List<int> myColl = new List<int> { -10, 10, -10, 10, 24, -20, -10, 6, 10, 55 };
-
-            for (int i = 0; i < myColl.Count; i++)
+            List<IFlyable> flyables = new List<IFlyable>();
+            flyables.Add(myBird1);
+            flyables.Add(myBird2);
+            flyables.Add(myPlane1);
+            flyables.Add(myPlane2);
+            foreach(IFlyable item in flyables) 
             {
-                    
-                if (i == myColl.IndexOf(-10))
-                {
-                    Console.WriteLine($"Integer -10 at position :{i} ");
-                    myColl.Remove(myColl[i]);
-                    myColl.Insert(i, 10);
-                }
-            }            
-            //myColl = myColl.Select((value, index) => new { value, index }).Where(x => x.value == -10).Select(x => x.index).ToList();
+                item.Fly();
+            }
+
+            /// task2
+            /// 
+            List<int> myColl = new List<int>();
+            int myCollIndex = 10;
+            Random rnd = new Random();
+            Console.WriteLine("\nEnter collection of 10 int:");
+            for(int i = 0; i < myCollIndex; i++) 
+            {
+                int k = rnd.Next(-10, 100);
+                Console.WriteLine($"{i+1}. ={k}");
+                //myColl.Add(Convert.ToInt32(Console.ReadLine()));
+                myColl.Add(k);
+            }
+
+            Console.WriteLine("\nAll -10");
+            var allEqulsMinus10 = myColl.FindAll( p => p == -10);
+            //foreach (int findEquals in allEqulsMinus10)
+            //{
+            //    Console.WriteLine($"{findEquals}");
+            //}
+            Console.WriteLine(String.Join(", ", allEqulsMinus10));
+
+            Console.WriteLine("\nReplease");
             myColl.Insert(2, 1);
             myColl.Insert(8, -3);
             myColl.Insert(5, -4);
-            myColl.RemoveAll(x => x > 20);
+            Console.WriteLine(String.Join(", ", myColl));
+
+            Console.WriteLine("\nWithout greater 20");
+            myColl.RemoveAll( p => p > 20 );
+            Console.WriteLine(String.Join(", ",myColl));
+
+            Console.WriteLine("\nSort");
             myColl.Sort();
-            foreach (int item in myColl)
-            {
-                Console.Write(" | " + item);
-            }
-          
+            Console.WriteLine(String.Join(", ", myColl));
 
         }
-    }
-}
-
-
-            //Task_3
-
-            Console.WriteLine("\nEnter Http error cod : ");
-            int error = Convert.ToInt32(Console.ReadLine());
-            HttpErrors badRequest = HttpErrors.error400;
-            HttpErrors unautorized = HttpErrors.error401;
-            HttpErrors paymentRequired = HttpErrors.error402;
-            HttpErrors forbidden = HttpErrors.error403;
-
-
-            switch (error)
-            {
-                case 400:
-                    Console.WriteLine($"{ badRequest}, Bad Request");
-                    break;
-                case 401:
-                    Console.WriteLine($"{ unautorized}, Unautorized");
-                    break;
-                case 402:
-                    Console.WriteLine($"{ paymentRequired}, PaymentRequired");
-                    break;
-                case 403:
-                    Console.WriteLine($"{ forbidden}, Forbidden");
-                    break;
-            }
-
-            //Task_4
-
-            Console.WriteLine("\nCat Info");
-            Cat cat1 = new Cat();
-            Cat cat2 = new Cat();
-            cat1.getCatInfo("Charlie", "Home", 12);
-            cat2.getCatInfo("Elise", "Scotland", 8);
-            cat1.outPut();
-            cat2.outPut();
-
-
-
-        }
-    }
-}
-
-{
-    class Program
-    {
-        static void Main(string[] args)
+        static void showHomework5()
         {
 
-            Car car1 = new Car();
-            car1.Input();
-            Car car2 = new Car();
-            car2.Input();
-            Car car3 = new Car();
-            car3.Input();
-            car1.Output();
-            car2.Output();
-            car3.Output();
-            Console.Write("Enter sale percent : ");
-            double percent = Convert.ToDouble(Console.ReadLine());
-            car1.ChangePrice(percent);
-            car2.ChangePrice(percent);
-            car3.ChangePrice(percent);
-            Console.Write("Car data after change price SALE :");
-            car1.Output();
-            car2.Output();
-            car3.Output();
-            Console.Write("Enter color to repaint white cars : ");
-            string newColor = Console.ReadLine();
-            car1.Repaint(car1, newColor);
-            car2.Repaint(car2, newColor);
-            car3.Repaint(car3, newColor);
-            car1.Output();
-            car2.Output();
-            car3.Output();
-            Console.WriteLine("Checking same cars in garage : ");
-            if (car1 == car2) Console.WriteLine($"Same cars{car1.name} & {car2.name}");
-            else if (car1 == car3) Console.WriteLine($"Same cars {car1.name} & {car3.name}");
-            else if (car2 == car3) Console.WriteLine($"Same cars {car2.name} & {car3.name} ");
-            else Console.WriteLine("Not the same car ");
+            /// hw1
+            /// 
+            List<IDeveloper> developer_builder_list = new List<IDeveloper>();
+            developer_builder_list.Add(new Programmer("Python"));
+            developer_builder_list.Add(new Programmer("C#"));
+            developer_builder_list.Add(new Builder("Hammer"));
+            developer_builder_list.Add(new Builder("Screwdriver"));
+            foreach (IDeveloper item in developer_builder_list)
+            {
+                item.Create();
+                item.Destroy();
+            }
+            developer_builder_list.Sort();
 
+            /// hw2
+            /// 
+            Dictionary<uint, string> myDictionary = new Dictionary<uint, string>();
+            for (int i = 0; i < 2; i++)
+            {
+                Console.WriteLine("Enter ID:");
+                uint o = Convert.ToUInt32(Console.ReadLine());
+                Console.WriteLine("Enter Name:");
+                string l = Console.ReadLine();
 
+                myDictionary.Add(o,l);
 
+            }
 
+            Console.WriteLine("\nEnter ID:");
+            uint k = Convert.ToUInt32(Console.ReadLine());
+            string m = string.Empty;
+            if (myDictionary.TryGetValue(k, out m))
+            {
+                Console.WriteLine($"Yor name by ID is = {m}");
+            }
+            else
+            {
+                Console.WriteLine("Wrong ID!");
+            }
+
+        }
+
+    }
+}

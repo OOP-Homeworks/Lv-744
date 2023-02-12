@@ -1,36 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Lecture5_744
 {
-    internal class Programmer: IDeveloper
+    internal class Builder : IDeveloper
     {
-        private string language;
-        public string Tool { get; }
+        string tool;
+        public string Tool { get { return tool; } }
 
-        public Programmer(string language)
-        {
-            this.language = language;
-        }
+        public Builder(string tool)
+        { this.tool = tool; }
 
         public void Create()
         {
-            Console.WriteLine($"Create language is = {language}");
+            Console.WriteLine($"Builder using = {tool}");
         }
         public void Destroy()
         {
-            language = language.Remove(0);
-            Console.WriteLine($"Delete language = {language}");
+            tool = tool.Remove(0);
+            Console.WriteLine($"Builder destroyed all with = {tool}");
         }
+
         public int CompareTo(IDeveloper? otherObj)
         {
             if (otherObj == null) return 1;
             return string.Compare(Tool, otherObj.Tool);
         }
-
     }
 }
