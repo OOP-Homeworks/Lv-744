@@ -1,14 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace HW_5
 {
     class Programmer : IDeveloper, IComparable
     {
-
         public string Tool { get { return lenguage; } set { lenguage = value; } }
         public void Create() 
         {
