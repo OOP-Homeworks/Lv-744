@@ -1,72 +1,66 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
+using System.Drawing;
+using System.Runtime.CompilerServices;
 
-namespace HW_4_2023
+namespace Lecture4_744
 {
-    class Person
-    {
-        string name;
-        int birthYear;
-        public string Name { get { return name; } private set { name = value; } }
-        public int BirthYear
+	public class Person
+	{
+		private string name;
+        private DateTime birthYear;
+
+		public string Name
+		{
+			get { return name; }
+		}
+
+        public DateTime BirthYear
         {
             get { return birthYear; }
-            private set
-            {
-                if (value > 2022 && value < 1922)
-                {
-                    Console.WriteLine("Year format exeption");
-                }
-            }
         }
-        public Person() { }
-        public Person(string name, int birthYear)
+
+        public Person() {}
+
+        public Person(string _name, DateTime _birthYear)
         {
-            Name = name;
-            BirthYear = birthYear;
+			name = _name;
+			birthYear = _birthYear;
         }
+
         public int Age()
         {
-            int age = 2023 - birthYear;
-            Console.WriteLine(name + birthYear + age);
+            var now = DateTime.Today;
+            long diff = now.Ticks - birthYear.Ticks;
+            DateTime yearDiff = new DateTime(diff);
+            int age = yearDiff.Year;
+
             return age;
-        }
-        public  void ChangeName(string newName)
-        {
-            name = newName;
-        }
-        public override string ToString()
-        {
-            return string.Format($" Name: {name} birthyear : {birthYear.ToString("yyyy")} ");
-        }
-        public static bool operator ==(Person person1, Person person2)
-        {
-            return person1.name == person2.name;
-        }
-        public static bool operator !=(Person person1, Person person2)
-        {
-            return person1.name != person2.name;
-        }
-        public void  Output()
-        {
-            Console.WriteLine($" Name : {name} year : {birthYear}");
-        }
-        public static Person Input()
-        {
-            Person p = new Person();
-            Console.Write("Enter persons name : ");
-            string name = Console.ReadLine();
-            p.name = name;
-            Console.Write("Enter birth year : ");
-            int year = Convert.ToInt32((Console.ReadLine()));
-            p.birthYear = year;
-            
-            return p;
 
         }
+
+        public void ChangeName(string _name) { name= _name; }
+        
+        public override string ToString()
+        {
+            return $"Name: {name} BirthYear: {birthYear.ToString("D")}";
+        }
+
+        public string Output()
+        { 
+            return this.ToString() ;
+        }
+
+        public static bool operator ==(Person first, Person second)
+        {
+            return first.name == second.name;
+        }
+
+        public static bool operator !=(Person first, Person second)
+        {
+            return first.name != second.name;
+        }
+
     }
 }
+
