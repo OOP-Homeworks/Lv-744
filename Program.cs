@@ -1,64 +1,98 @@
-﻿using System;
+using System;
 using System.IO;
-using System.Collections.Generic;
-
-namespace PhoneBook
+namespace Task_7
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Task11()
         {
-            Dictionary<string, string> PhoneBook = new Dictionary<string, string>();
-
+            string document = @"C:\Users\judai\source\repos\Task_7\Task_7\Document.txt";
+            string newDocument = @"C:\Users\judai\source\repos\Task_7\Task_7\New_Document.txt";
+            string documentText = "";
             try
             {
-                string testdev = @"D:\phones\phones.txt";
-                
-                string[] lines = File.ReadAllLines(testdev);
-                foreach (string line in lines)
+                using (StreamReader sr = new StreamReader(document, System.Text.Encoding.Default))
                 {
-                    string[] text = line.Split(' ');
-                    PhoneBook.Add(text[0], text[1]);
+                    documentText = sr.ReadToEnd();
                 }
-
-                
-                List<string> phoneNumbers = new List<string>(PhoneBook.Values);
-                File.WriteAllLines("phones.txt", phoneNumbers);
-
-                
-                Console.WriteLine("Enter the person name: ");
-                string name = Console.ReadLine();
-                if (PhoneBook.ContainsKey(name))
+                using (StreamWriter str = new StreamWriter(newDocument, false, System.Text.Encoding.Default))
                 {
-                    Console.WriteLine("The phone number is: " + PhoneBook[name]);
+                    str.WriteLine(documentText);
                 }
-                else
-                {
-                    Console.WriteLine("Person not found.");
-                }
-
-                
-                List<string> newPhoneNumbers = new List<string>();
-                foreach (string phoneNumber in phoneNumbers)
-                {
-                    if (phoneNumber.StartsWith("80"))
-                    {
-                        string newPhoneNumber = "+380" + phoneNumber.Substring(2);
-                        newPhoneNumbers.Add(newPhoneNumber);
-                    }
-                    else
-                    {
-                        newPhoneNumbers.Add(phoneNumber);
-                    }
-                }
-
-                
-                File.WriteAllLines("new.txt", newPhoneNumbers);
             }
             catch (Exception ex)
             {
-                Console.WriteLine("An error occurred: " + ex.Message);
+                Console.WriteLine(ex.Message);
             }
+        }
+        static void Task12()
+        {
+            string document = @"C:\Users\judai\source\repos\Task_7\Task_7\Document.txt";
+            string newDocument = @"C:\Users\judai\source\repos\Task_7\Task_7\New_Document.txt";
+            FileInfo fileInfo = new FileInfo(document);
+            try
+            {
+                if (fileInfo.Exists)
+                {
+                    fileInfo.CopyTo(newDocument);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+        static void Task2()
+        {
+            string dirInfo = @"C:\Users\judai\source\repos\Task_7\Task_7\DirInfo.txt";
+            string dir = @"C:\";
+            try
+            {
+                if (Directory.Exists(dir))
+                {
+                    string[] dirs = Directory.GetDirectories(dir);
+                    foreach (var item in dirs)
+                    {
+                        StreamWriter str = new StreamWriter(dirInfo, true, System.Text.Encoding.Default);
+                        str.WriteLine(item);
+                        str.Close();
+                    }
+                    string[] files = Directory.GetFiles(dir);
+                    foreach (var item in files)
+                    {
+                        StreamWriter file = new StreamWriter(dirInfo, true, System.Text.Encoding.Default);
+                        file.WriteLine(item);
+                        file.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+        static void Task3()
+        {
+            string dir = @"C:\";
+            string[] filesTXT = Directory.GetFiles(dir, "*.txt", SearchOption.AllDirectories);
+            foreach (var file in filesTXT)
+            {
+                using (StreamReader streamReader = new StreamReader(file, System.Text.Encoding.Default))
+                {
+                    string fileLine;
+                    while ((fileLine = streamReader.ReadLine()) != null)
+                    {
+                        Console.WriteLine(fileLine);
+                    }
+                }
+            }
+        }
+        static void Main(string[] args)
+        {
+            //Task11();
+            //Task12();
+            //Task2();
+            Task3();
         }
     }
 }
