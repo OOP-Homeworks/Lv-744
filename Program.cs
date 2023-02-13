@@ -1,98 +1,97 @@
 using System;
-using System.IO;
-namespace Task_7
+namespace HW_6_2023
 {
     class Program
     {
-        static void Task11()
+        public static int Div(int i1, int i2)
         {
-            string document = @"C:\Users\judai\source\repos\Task_7\Task_7\Document.txt";
-            string newDocument = @"C:\Users\judai\source\repos\Task_7\Task_7\New_Document.txt";
-            string documentText = "";
+            return i1 / i2;
+        }
+        public static double DivD(double i, double j)
+        {
+            return i / j;
+        }
+        public static int Mein()
+        {
+            const int maxInt = 10;
+            Random rand = new Random();
+            Console.WriteLine("//////////   Method Main   //////////");
+            for (int i = 0; i < maxInt; i++)
+            {
+                Console.WriteLine(rand.Next(1, 100));
+            }
+            return maxInt;
+        }
+        public static int ReadNumber(int start, int end)
+        {
+            Console.WriteLine("//////////   Method ReadNumber   //////////");
             try
             {
-                using (StreamReader sr = new StreamReader(document, System.Text.Encoding.Default))
+                Console.Write("Enter New Integer to check it in the renge : ");
+                int input = Int32.Parse(Console.ReadLine());
+                if (input < start && input > end)
                 {
-                    documentText = sr.ReadToEnd();
+                    throw new ArgumentOutOfRangeException("Argument is out of renge!");
                 }
-                using (StreamWriter str = new StreamWriter(newDocument, false, System.Text.Encoding.Default))
+                else
                 {
-                    str.WriteLine(documentText);
+                    Console.WriteLine($"Your integer {input} is in the renge {start} - {end}");
                 }
             }
-            catch (Exception ex)
+            catch (FormatException ex)
             {
                 Console.WriteLine(ex.Message);
             }
-        }
-        static void Task12()
-        {
-            string document = @"C:\Users\judai\source\repos\Task_7\Task_7\Document.txt";
-            string newDocument = @"C:\Users\judai\source\repos\Task_7\Task_7\New_Document.txt";
-            FileInfo fileInfo = new FileInfo(document);
-            try
+            catch (ApplicationException ap)
             {
-                if (fileInfo.Exists)
-                {
-                    fileInfo.CopyTo(newDocument);
-                }
+                Console.WriteLine(ap.Source);
             }
-            catch (Exception e)
+            finally
             {
-                Console.WriteLine(e.Message);
+                Console.WriteLine($"End of Method ReadNumber");
             }
-        }
-        static void Task2()
-        {
-            string dirInfo = @"C:\Users\judai\source\repos\Task_7\Task_7\DirInfo.txt";
-            string dir = @"C:\";
-            try
-            {
-                if (Directory.Exists(dir))
-                {
-                    string[] dirs = Directory.GetDirectories(dir);
-                    foreach (var item in dirs)
-                    {
-                        StreamWriter str = new StreamWriter(dirInfo, true, System.Text.Encoding.Default);
-                        str.WriteLine(item);
-                        str.Close();
-                    }
-                    string[] files = Directory.GetFiles(dir);
-                    foreach (var item in files)
-                    {
-                        StreamWriter file = new StreamWriter(dirInfo, true, System.Text.Encoding.Default);
-                        file.WriteLine(item);
-                        file.Close();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-        }
-        static void Task3()
-        {
-            string dir = @"C:\";
-            string[] filesTXT = Directory.GetFiles(dir, "*.txt", SearchOption.AllDirectories);
-            foreach (var file in filesTXT)
-            {
-                using (StreamReader streamReader = new StreamReader(file, System.Text.Encoding.Default))
-                {
-                    string fileLine;
-                    while ((fileLine = streamReader.ReadLine()) != null)
-                    {
-                        Console.WriteLine(fileLine);
-                    }
-                }
-            }
+            return start + '-' + end;
         }
         static void Main(string[] args)
         {
-            //Task11();
-            //Task12();
-            //Task2();
-            Task3();
-        }
+
+            try
+            {
+                Console.WriteLine("Enter two int numbers");
+                Console.Write(" Enter first int : ");
+                int inp1 = Int32.Parse(Console.ReadLine());
+                Console.Write("Enter second int : ");
+                int inp2 = Int32.Parse(Console.ReadLine());
+                Console.WriteLine(Div(inp1, inp2));
+                if (inp1 % inp2 == 1 && inp2 > inp1)
+                {
+                    throw new Exception("input exeption");
+                }
+                Console.WriteLine("Enter two double numbers");
+                Console.Write(" Enter first double : ");
+                double in1 = Double.Parse(Console.ReadLine());
+                Console.Write("Enter second int : ");
+                double in2 = Double.Parse(Console.ReadLine());
+                Console.WriteLine(DivD(in1, in2));
+                if (in2 > in1)
+                {
+                    throw new Exception("input exeption");
+                }
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Format exeption. Enter integer number");
+            }
+            catch (DivideByZeroException)
+            {
+                Console.WriteLine("DivideByZeroException");
+            }
+            catch (ApplicationException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            ReadNumber(1, 100);
+            Mein();
+        }                
     }
 }
