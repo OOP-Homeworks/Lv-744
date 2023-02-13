@@ -1,25 +1,26 @@
-using System;
 using System.Collections.Generic;
 
-namespace PhoneBook
+namespace HW_5
 {
     class Program
     {
         static void Main(string[] args)
         {
-            uint input;
-            Dictionary<uint, string> people = new Dictionary<uint, string>();
-            people.Add(11, "Nancy");
-            people.Add(6, "Dino");
-            people.Add(3, "Kola");
-            people.Add(1, "Krab");
-            people.Add(0, "Name");
-            people.Add(2, "Mistery");
-            people.Add(5, "Petr");
-            Console.Write("Enter user ID to find : ");
-            input = Convert.ToUInt32(Console.ReadLine());
-            Console.WriteLine((people.ContainsKey(input) ? $"Key was found : \n{input} - {people[input]}" :
-                $"Key {input} wasn't found "));                
+            List <IDeveloper> developers = new List<IDeveloper>();
+            Builder builder1 = new Builder("John", "1C");
+            Builder builder2 = new Builder("Mark", "C#");
+            developers.Add(builder1);
+            developers.Add(builder2);
+            Programmer programmer1 = new Programmer("Ben","MacBook");
+            Programmer programmer2 = new Programmer("Filip","Acer");
+            developers.Add(programmer1);
+            developers.Add(programmer2);
+            foreach (IDeveloper devel in developers)
+            {
+                devel.Create();
+                devel.Destroy();
+            }
+            developers.Sort();
         }
     }
 }
