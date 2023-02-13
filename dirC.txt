@@ -1,0 +1,112 @@
+Name: 20230211HomeWork_7.csproj
+Date: 11.02.2023 11:16:54
+Size: 2385
+
+Name: 20230211HomeWork_7.sln
+Date: 11.02.2023 11:16:57
+Size: 1616
+
+Name: App.config
+Date: 11.02.2023 11:16:54
+Size: 187
+
+Name: data.txt
+Date: 04.09.2022 12:57:03
+Size: 430
+
+Name: dirC.txt
+Date: 12.02.2023 15:19:37
+Size: 255
+
+Name: newFile.txt
+Date: 12.02.2023 15:19:37
+Size: 2562
+
+Name: Newformat.txt
+Date: 12.02.2023 14:25:42
+Size: 220
+
+Name: newPhoneBook.txt
+Date: 12.02.2023 12:36:14
+Size: 126
+
+Name: PhoneBook.txt
+Date: 12.02.2023 12:16:41
+Size: 186
+
+Name: Program.cs
+Date: 11.02.2023 11:16:54
+Size: 3715
+
+Name: rez.txt
+Date: 12.02.2023 15:19:37
+Size: 432
+
+Name: 6eed44ba-e69c-45a3-a802-dfa17e6647a5.vsidx
+Date: 13.02.2023 11:36:54
+Size: 16486
+
+Name: bfc21208-81ec-4be6-9b8b-5ed95e6077fa.vsidx
+Date: 13.02.2023 11:42:01
+Size: 15241
+
+Name: read.lock
+Date: 11.02.2023 11:16:59
+Size: 0
+
+Name: .suo
+Date: 11.02.2023 11:16:57
+Size: 57856
+
+Name: 20230211HomeWork_7.exe
+Date: 11.02.2023 11:27:38
+Size: 6656
+
+Name: 20230211HomeWork_7.exe.config
+Date: 11.02.2023 11:27:38
+Size: 187
+
+Name: 20230211HomeWork_7.pdb
+Date: 11.02.2023 11:27:38
+Size: 22016
+
+Name: .NETFramework,Version=v4.8.AssemblyAttributes.cs
+Date: 11.02.2023 11:16:56
+Size: 210
+
+Name: 20230211HomeWork_7.csproj.AssemblyReference.cache
+Date: 11.02.2023 11:16:56
+Size: 4061
+
+Name: 20230211HomeWork_7.csproj.CoreCompileInputs.cache
+Date: 11.02.2023 11:27:38
+Size: 42
+
+Name: 20230211HomeWork_7.csproj.FileListAbsolute.txt
+Date: 11.02.2023 11:27:38
+Size: 744
+
+Name: 20230211HomeWork_7.csproj.SuggestedBindingRedirects.cache
+Date: 11.02.2023 11:27:38
+Size: 0
+
+Name: 20230211HomeWork_7.exe
+Date: 11.02.2023 11:27:38
+Size: 6656
+
+Name: 20230211HomeWork_7.pdb
+Date: 11.02.2023 11:27:38
+Size: 22016
+
+Name: DesignTimeResolveAssemblyReferencesInput.cache
+Date: 11.02.2023 11:16:56
+Size: 6733
+
+Name: _IsIncrementalBuild
+Date: 11.02.2023 11:27:38
+Size: 32
+
+Name: AssemblyInfo.cs
+Date: 11.02.2023 11:16:53
+Size: 1443
+
