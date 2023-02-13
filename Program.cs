@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -26,7 +26,6 @@ namespace HomeWork_7_Kydalov
                 foreach (var item in PhoneBook.Keys)
                 {
                     sw.WriteLine(item);
-
                 }
             }
             catch (Exception e)
@@ -65,7 +64,6 @@ namespace HomeWork_7_Kydalov
             {
                 Console.WriteLine(e.Message);
             }
-
         }
     }
 }
