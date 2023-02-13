@@ -1,3 +1,4 @@
+using System;
 namespace HW_6_2023
 {
     class Program
@@ -9,6 +10,47 @@ namespace HW_6_2023
         public static double DivD(double i, double j)
         {
             return i / j;
+        }
+        public static int Mein()
+        {
+            const int maxInt = 10;
+            Random rand = new Random();
+            Console.WriteLine("//////////   Method Main   //////////");
+            for (int i = 0; i < maxInt; i++)
+            {
+                Console.WriteLine(rand.Next(1, 100));
+            }
+            return maxInt;
+        }
+        public static int ReadNumber(int start, int end)
+        {
+            Console.WriteLine("//////////   Method ReadNumber   //////////");
+            try
+            {
+                Console.Write("Enter New Integer to check it in the renge : ");
+                int input = Int32.Parse(Console.ReadLine());
+                if (input < start && input > end)
+                {
+                    throw new ArgumentOutOfRangeException("Argument is out of renge!");
+                }
+                else
+                {
+                    Console.WriteLine($"Your integer {input} is in the renge {start} - {end}");
+                }
+            }
+            catch (FormatException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            catch (ApplicationException ap)
+            {
+                Console.WriteLine(ap.Source);
+            }
+            finally
+            {
+                Console.WriteLine($"End of Method ReadNumber");
+            }
+            return start + '-' + end;
         }
         static void Main(string[] args)
         {
@@ -50,51 +92,6 @@ namespace HW_6_2023
             }
             ReadNumber(1, 100);
             Mein();
-
-        }
-        public static int ReadNumber(int start, int end)
-        {
-            Console.WriteLine("//////////   Method ReadNumber   //////////");
-            try
-            {  
-                Console.Write("Enter New Integer to check it in the renge : ");
-                int input = Int32.Parse(Console.ReadLine());
-                if (input < start && input > end)
-                {
-                    throw new ArgumentOutOfRangeException("Argument is out of renge!");
-                }
-                else
-                {
-                Console.WriteLine($"Your integer {input} is in the renge {start} - {end}");
-                }
-            }
-            catch (FormatException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            catch (ApplicationException ap)
-            {
-                Console.WriteLine(ap.Source);
-            }
-            finally
-            {
-                Console.WriteLine($"End of Method ReadNumber");
-            }
-            return start + '-' + end;
-
-
-        }
-        public static int Mein()
-        {
-            const int maxInt = 10;
-            Random rand = new Random();
-            Console.WriteLine("//////////   Method Main   //////////");
-            for (int i = 0; i < maxInt; i++)
-            {
-                Console.WriteLine(rand.Next(1,100));
-            }
-            return maxInt;
-
-        }
+        }                
     }
 }
