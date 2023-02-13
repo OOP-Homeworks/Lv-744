@@ -1,98 +1,71 @@
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
-namespace Task_7
+
+namespace HomeWork_7_Kydalov
 {
     class Program
     {
-        static void Task11()
+        static void Main(string[] args)
         {
-            string document = @"C:\Users\judai\source\repos\Task_7\Task_7\Document.txt";
-            string newDocument = @"C:\Users\judai\source\repos\Task_7\Task_7\New_Document.txt";
-            string documentText = "";
+            string path = @"C:\Users\judai\source\repos\HomeWork_7_Kydalov\HomeWork_7_Kydalov\phones.txt";
+            string phoneBookPath = @"C:\Users\judai\source\repos\HomeWork_7_Kydalov\HomeWork_7_Kydalov\PhoneBook.txt";
+            string newPath = @"C:\Users\judai\source\repos\HomeWork_7_Kydalov\HomeWork_7_Kydalov\New.txt";
+            Dictionary<string, string> PhoneBook = new(10);
+            string readString;
             try
             {
-                using (StreamReader sr = new StreamReader(document, System.Text.Encoding.Default))
+                using (StreamReader sr = new(phoneBookPath))
                 {
-                    documentText = sr.ReadToEnd();
+                    while ((readString = sr.ReadLine()) != null)
+                    {
+                        PhoneBook.Add(readString.Split('-')[0].Trim(), readString.Split('-')[1].Trim());
+                    }
                 }
-                using (StreamWriter str = new StreamWriter(newDocument, false, System.Text.Encoding.Default))
+                using StreamWriter sw = new(path);
+                foreach (var item in PhoneBook.Keys)
                 {
-                    str.WriteLine(documentText);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-        }
-        static void Task12()
-        {
-            string document = @"C:\Users\judai\source\repos\Task_7\Task_7\Document.txt";
-            string newDocument = @"C:\Users\judai\source\repos\Task_7\Task_7\New_Document.txt";
-            FileInfo fileInfo = new FileInfo(document);
-            try
-            {
-                if (fileInfo.Exists)
-                {
-                    fileInfo.CopyTo(newDocument);
+                    sw.WriteLine(item);
+
                 }
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             }
-        }
-        static void Task2()
-        {
-            string dirInfo = @"C:\Users\judai\source\repos\Task_7\Task_7\DirInfo.txt";
-            string dir = @"C:\";
+            foreach (var item in PhoneBook)
+            {
+                Console.WriteLine($"Number {item.Key} have {item.Value}");
+            }
+            Console.WriteLine("Enter person name :");
+            string nameToFound = Console.ReadLine();
             try
             {
-                if (Directory.Exists(dir))
+                foreach (var value in PhoneBook)
                 {
-                    string[] dirs = Directory.GetDirectories(dir);
-                    foreach (var item in dirs)
+                    if (nameToFound == value.Value)
                     {
-                        StreamWriter str = new StreamWriter(dirInfo, true, System.Text.Encoding.Default);
-                        str.WriteLine(item);
-                        str.Close();
+                        Console.WriteLine($"{value.Value} have #tel {value.Key}");
                     }
-                    string[] files = Directory.GetFiles(dir);
-                    foreach (var item in files)
+                }
+                foreach (string key in PhoneBook.Keys)
+                {
+                    using StreamWriter writeNumber = new(newPath, true);
+                    if (key.StartsWith("80"))
                     {
-                        StreamWriter file = new StreamWriter(dirInfo, true, System.Text.Encoding.Default);
-                        file.WriteLine(item);
-                        file.Close();
+                        writeNumber.WriteLine($"+3{key}");
+                    }
+                    else
+                    {
+                        writeNumber.WriteLine($"{key}");
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine(e.Message);
             }
-        }
-        static void Task3()
-        {
-            string dir = @"C:\";
-            string[] filesTXT = Directory.GetFiles(dir, "*.txt", SearchOption.AllDirectories);
-            foreach (var file in filesTXT)
-            {
-                using (StreamReader streamReader = new StreamReader(file, System.Text.Encoding.Default))
-                {
-                    string fileLine;
-                    while ((fileLine = streamReader.ReadLine()) != null)
-                    {
-                        Console.WriteLine(fileLine);
-                    }
-                }
-            }
-        }
-        static void Main(string[] args)
-        {
-            //Task11();
-            //Task12();
-            //Task2();
-            Task3();
+
         }
     }
 }
