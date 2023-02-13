@@ -1,0 +1,6 @@
+Read and write all data from data.txt into rez.txt files, by using (Catch appropriative exceptions):
+StreamReader StreamWriter
+File.WriteAllText
+Write into file ‘DirectoryC.txt’ information (e.g. name, type, size) about all directories and files from disc D on your computer. Catch appropriative exceptions.
+Select from directory D only .txt files and print the text from it into console. Catch appropriative exceptions.
+

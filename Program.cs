@@ -1,11 +1,13 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Concurrent;
 
 namespace Lecture4_744;
 class Program
+
 {
     static void Main(string[] args)
+
     {
 
         Console.WriteLine("\nTask #4");
