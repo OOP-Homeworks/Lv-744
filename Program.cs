@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace HW_5_D
+namespace PhoneBook
 {
     class Program
     {
@@ -19,7 +19,7 @@ namespace HW_5_D
             Console.Write("Enter user ID to find : ");
             input = Convert.ToUInt32(Console.ReadLine());
             Console.WriteLine((people.ContainsKey(input) ? $"Key was found : \n{input} - {people[input]}" :
-                $"Key {input} wasn't found "));
+                $"Key {input} wasn't found "));                
         }
     }
 }
