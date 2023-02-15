@@ -1,75 +1,75 @@
 
+using System;
+using System.Collections.Generic;
+using System.IO;
+
+namespace HomeWork_7_Kydalov
+{
+
     class Program
     {
         static void Main(string[] args)
         {
 
-            List<Shape> shapes = new List<Shape>();
-            Console.WriteLine("Enter 10 times: ");
-            for (int i = 0; i <= 1; i++)
+            string path = @"C:\Users\judai\source\repos\HomeWork_7_Kydalov\HomeWork_7_Kydalov\phones.txt";
+            string phoneBookPath = @"C:\Users\judai\source\repos\HomeWork_7_Kydalov\HomeWork_7_Kydalov\PhoneBook.txt";
+            string newPath = @"C:\Users\judai\source\repos\HomeWork_7_Kydalov\HomeWork_7_Kydalov\New.txt";
+            Dictionary<string, string> PhoneBook = new(10);
+            string readString;
+            try
+
             {
-                Console.WriteLine($"Enter Shape {i}: ");
-                Console.Write("Enter shape name: ");
-                string name = Console.ReadLine();
-
-                Console.Write("Enter shape type (Circle/Square): ");
-                string type = Console.ReadLine();
-
-                if (type == "Circle")
+                using (StreamReader sr = new(phoneBookPath))
                 {
-                    Console.Write("Enter radius: ");
-                    double radius = double.Parse(Console.ReadLine());
-                    shapes.Add(new Circle(name, radius));
+                    while ((readString = sr.ReadLine()) != null)
+                    {
+                        PhoneBook.Add(readString.Split('-')[0].Trim(), readString.Split('-')[1].Trim());
+                    }
                 }
-                else if (type == "Square")
+                using StreamWriter sw = new(path);
+                foreach (var item in PhoneBook.Keys)
                 {
-                    Console.Write("Enter side: ");
-                    double side = double.Parse(Console.ReadLine());
-                    shapes.Add(new Square(name, side));
+                    sw.WriteLine(item);
                 }
             }
-            Console.WriteLine("\nShape info: ");
-            foreach (var shape in shapes)
+            catch (Exception e)
             {
-                Console.WriteLine($"Name: {shape.Name}, Area: {shape.Area()}, Perimeter: {shape.Perimeter()}");
+                Console.WriteLine(e.Message);
             }
-
-            Shape TheBiggest = shapes[0];
-            foreach (var shape in shapes)
+            foreach (var item in PhoneBook)
             {
-                if (shape.Perimeter() > TheBiggest.Perimeter())
+                Console.WriteLine($"Number {item.Key} have {item.Value}");
+            }
+            Console.WriteLine("Enter person name :");
+            string nameToFound = Console.ReadLine();
+            try
+            {
+                foreach (var value in PhoneBook)
                 {
-                    TheBiggest = shape;
+                    if (nameToFound == value.Value)
+                    {
+                        Console.WriteLine($"{value.Value} have #tel {value.Key}");
+                    }
+                }
+                foreach (string key in PhoneBook.Keys)
+                {
+                    using StreamWriter writeNumber = new(newPath, true);
+                    if (key.StartsWith("80"))
+                    {
+                        writeNumber.WriteLine($"+3{key}");
+                    }
+                    else
+                    {
+                        writeNumber.WriteLine($"{key}");
+                    }
                 }
             }
-
-            Console.WriteLine("\nShape with largest perimeter: ");
-            Console.WriteLine($"Name: {TheBiggest.Name}, Perimeter: {TheBiggest.Perimeter()}");
-
-            shapes.Sort();
-
-            Console.WriteLine("\nSorted by area: ");
-            foreach (var shape in shapes)
+            catch (Exception e)
             {
-                Console.WriteLine(shape);
+                Console.WriteLine(e.Message);
             }
 
 
-            List <IDeveloper> developers = new List<IDeveloper>();
-            Builder builder1 = new Builder("John", "1C");
-            Builder builder2 = new Builder("Mark", "C#");
-            developers.Add(builder1);
-            developers.Add(builder2);
-            Programmer programmer1 = new Programmer("Ben","MacBook");
-            Programmer programmer2 = new Programmer("Filip","Acer");
-            developers.Add(programmer1);
-            developers.Add(programmer2);
-            foreach (IDeveloper devel in developers)
-            {
-                devel.Create();
-                devel.Destroy();
-            }
-            developers.Sort();
 
         }
     }
