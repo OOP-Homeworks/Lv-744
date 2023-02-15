@@ -1,19 +1,23 @@
+
 using System;
 using System.Collections.Generic;
 using System.IO;
 
 namespace HomeWork_7_Kydalov
 {
+
     class Program
     {
         static void Main(string[] args)
         {
+
             string path = @"C:\Users\judai\source\repos\HomeWork_7_Kydalov\HomeWork_7_Kydalov\phones.txt";
             string phoneBookPath = @"C:\Users\judai\source\repos\HomeWork_7_Kydalov\HomeWork_7_Kydalov\PhoneBook.txt";
             string newPath = @"C:\Users\judai\source\repos\HomeWork_7_Kydalov\HomeWork_7_Kydalov\New.txt";
             Dictionary<string, string> PhoneBook = new(10);
             string readString;
             try
+
             {
                 using (StreamReader sr = new(phoneBookPath))
                 {
@@ -64,6 +68,9 @@ namespace HomeWork_7_Kydalov
             {
                 Console.WriteLine(e.Message);
             }
+
+
+
         }
     }
 }
