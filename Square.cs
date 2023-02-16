@@ -4,25 +4,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CsharpTraining
+namespace HW_8_2023
 {
-    internal class Square : Shape
+    class Square : Shapes
     {
-        public double Side { get; set; }
+        private int side;
+        private string size;
+        public int Side { get { return side; } }
+        public string Size { get { return size; } }
 
-        public Square(string name, double side) : base(name)
+        public Square(string name, int side, string size) : base(name)
         {
-            this.Side = side;
+            this.size = size;
+            this.side = side;
+        }
+        public override  double Area()
+        {
+            return side * side;   
         }
 
-        public override double Area()
+        public override  double Perimeter()
         {
-            return Math.Pow(Side, 2);
+            return 4 * side;    
         }
-
-        public override double Perimeter()
+        public override void Print()
         {
-            return 4 * Side;
+            Console.WriteLine("Square method Print :\n{0} have Area : {1:###.##} and Perimeter :{2:###.##} Size : {3}",name,Area(),Perimeter(),size);
         }
     }
 }
