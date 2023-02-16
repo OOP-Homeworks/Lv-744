@@ -4,23 +4,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CsharpTraining
+namespace HW_8_2023
 {
-    internal class Circle : Shape
+    class Circle : Shapes
     {
-        public double Radius { get; set; }
+        private int radius;
+        private string size;
+        public int Radius { get { return radius; } }
+        public string Size { get { return size; } }
 
-        public Circle(string name, double radius) : base(name)
+        public Circle(string name, int radius, string size) : base(name)
         {
-            this.Radius = radius;
+            this.size = size;
+            this.radius = radius;
         }
         public override double Area()
         {
             return Math.PI * Math.Pow(Radius, 2);
         }
+
         public override double Perimeter()
         {
-            return 2 * Math.PI * Radius;
+            return 2 * Radius * Math.PI; 
         }
+        public override void Print()
+        {
+            Console.WriteLine("Circle method Print:\n{0} have Area : {1:###.##} and Perimeter :{2:###.##} Size {3}", Name, Area(), Perimeter(), size);
+        }
+
+
     }
 }

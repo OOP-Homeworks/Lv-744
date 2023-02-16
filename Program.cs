@@ -1,76 +1,52 @@
-
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.IO;
 
-namespace HomeWork_7_Kydalov
+namespace HW_8_2023
 {
-
     class Program
     {
         static void Main(string[] args)
         {
-
-            string path = @"C:\Users\judai\source\repos\HomeWork_7_Kydalov\HomeWork_7_Kydalov\phones.txt";
-            string phoneBookPath = @"C:\Users\judai\source\repos\HomeWork_7_Kydalov\HomeWork_7_Kydalov\PhoneBook.txt";
-            string newPath = @"C:\Users\judai\source\repos\HomeWork_7_Kydalov\HomeWork_7_Kydalov\New.txt";
-            Dictionary<string, string> PhoneBook = new(10);
-            string readString;
-            try
-
+            double maxPerimetr = 0.0;
+            List<Shapes> shapes = new();
+            shapes.Add(new Square("square1", 8, "Big"));
+            shapes.Add(new Square("square2", 3, "Small"));
+            shapes.Add(new Square("square3", 6, "Medium"));
+            shapes.Add(new Circle("circle1", 2, "Small"));
+            shapes.Add(new Circle("circle2", 5, "Medium"));
+            shapes.Add(new Circle("circle3", 12, "Big"));
+            foreach (var item in shapes)
             {
-                using (StreamReader sr = new(phoneBookPath))
-                {
-                    while ((readString = sr.ReadLine()) != null)
-                    {
-                        PhoneBook.Add(readString.Split('-')[0].Trim(), readString.Split('-')[1].Trim());
-                    }
-                }
-                using StreamWriter sw = new(path);
-                foreach (var item in PhoneBook.Keys)
-                {
-                    sw.WriteLine(item);
-                }
+                item.Print();
             }
-            catch (Exception e)
+            Console.WriteLine("Enter name of shape to find it : ");
+            string input = Console.ReadLine();
+            foreach (var item in shapes)
             {
-                Console.WriteLine(e.Message);
-            }
-            foreach (var item in PhoneBook)
-            {
-                Console.WriteLine($"Number {item.Key} have {item.Value}");
-            }
-            Console.WriteLine("Enter person name :");
-            string nameToFound = Console.ReadLine();
-            try
-            {
-                foreach (var value in PhoneBook)
+                if (item.Name == input)
                 {
-                    if (nameToFound == value.Value)
-                    {
-                        Console.WriteLine($"{value.Value} have #tel {value.Key}");
-                    }
-                }
-                foreach (string key in PhoneBook.Keys)
-                {
-                    using StreamWriter writeNumber = new(newPath, true);
-                    if (key.StartsWith("80"))
-                    {
-                        writeNumber.WriteLine($"+3{key}");
-                    }
-                    else
-                    {
-                        writeNumber.WriteLine($"{key}");
-                    }
+                    item.Print();
                 }
             }
-            catch (Exception e)
+            foreach (Shapes s in shapes)
             {
-                Console.WriteLine(e.Message);
+                if (maxPerimetr <= s.Perimeter())
+                {
+                    maxPerimetr = s.Perimeter();
+                }
             }
-
-
-
+            foreach (Shapes o in shapes)
+            {
+                if (maxPerimetr == o.Perimeter())
+                {
+                    Console.WriteLine($"Name: {o.Name}, with max perimetr:{o.Perimeter():###.##} ");
+                }
+            }
+            shapes.Sort();
+            foreach (var item in shapes)
+            {
+                Console.WriteLine($"Shape : {item} with perimeter : {item.Perimeter():###.##}");
+            }
         }
     }
 }
