@@ -13,3 +13,4 @@ namespace SayHi
         public abstract string GetName();
     }
 }
+
