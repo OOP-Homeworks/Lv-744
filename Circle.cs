@@ -4,34 +4,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HW_8_2023
+namespace SayHi
 {
-    class Circle : Shapes
+    class Circle : Shape
     {
-        private int radius;
-        private string size;
-        public int Radius { get { return radius; } }
-        public string Size { get { return size; } }
+        private double radius;
 
-        public Circle(string name, int radius, string size) : base(name)
+        public Circle(double radius)
         {
-            this.size = size;
             this.radius = radius;
         }
-        public override double Area()
+
+        public override double GetPerimeter()
         {
-            return Math.PI * Math.Pow(Radius, 2);
+            return 2 * Math.PI * radius;
         }
 
-        public override double Perimeter()
+        public override double GetArea()
         {
-            return 2 * Radius * Math.PI; 
-        }
-        public override void Print()
-        {
-            Console.WriteLine("Circle method Print:\n{0} have Area : {1:###.##} and Perimeter :{2:###.##} Size {3}", Name, Area(), Perimeter(), size);
+            return Math.PI * radius * radius;
         }
 
-
+        public override string GetName()
+        {
+            return "Circle";
+        }
     }
 }
