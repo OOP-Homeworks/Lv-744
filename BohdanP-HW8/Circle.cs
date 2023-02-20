@@ -36,7 +36,15 @@ namespace HW8
 
         public override int CompareTo(object obj)
         {
-            return GetArea.CompareTo(obj);
+            Shape sh1 = obj as Shape;
+            if (sh1 != null)
+            {
+                return GetArea.CompareTo(sh1.GetArea);
+            }
+            else
+            {
+                throw new ArgumentException("Object is not Shape");
+            }
         }
     }
 }

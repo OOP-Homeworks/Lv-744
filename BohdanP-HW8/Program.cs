@@ -23,10 +23,19 @@ namespace HW8
             }
             Console.WriteLine(perimeterList.Max() + " is the largest perimeter.");
 
+            ////SORT WITH LINQ
+            /*
             List<Shape> SortedList = shapes.OrderBy(o => o.GetArea).ToList();
             for (int i = 0; i < SortedList.Count; i++)
             {
                 Console.WriteLine(SortedList[i].ToString().Substring(SortedList[i].ToString().IndexOf('.') + 1) + " " + SortedList[i].GetArea);
+            }
+            */
+            ////SORT by utilizing CompareTo()
+            shapes.Sort();
+            foreach (var shape in shapes)
+            {
+                Console.WriteLine(shape.GetArea);
             }
         }
     }
