@@ -4,13 +4,49 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SayHi
+
+namespace _20230216_HomeWork_8
+
 {
-    abstract class Shape
+    abstract class Shape : IComparable<Shape>
     {
-        public abstract double GetPerimeter();
-        public abstract double GetArea();
-        public abstract string GetName();
+
+        private string name;
+
+        public string Name { get { return name; } }
+
+        public Shape(string name)
+        {
+            this.name = name;
+        }
+
+        public abstract double Area();
+
+        public abstract double Perimeter();
+
+        public int CompareTo(Shape s)
+        {
+            Circle circle = s as Circle;
+            Square square = s as Square;
+            if (circle != null)
+            {
+                return this.Area().CompareTo(circle.Area());
+            }
+            else if (square != null)
+            {
+                return this.Area().CompareTo(square.Area());
+            }
+            else
+            {
+                throw new ArgumentException("Error");
+            }
+        }
+
+        public void Print()
+        {
+            Console.WriteLine("Shape: {0}, area: {1:f2}, perimeter: {2:f2}", name, Area(), Perimeter());
+        }
+
     }
 }
 
