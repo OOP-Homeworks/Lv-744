@@ -1,72 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HW_4_2023
+namespace _20230215_HW_Task_8
 {
-    class Person
+    abstract class Person : IComparable
     {
-        string name;
-        int birthYear;
-        public string Name { get { return name; } private set { name = value; } }
-        public int BirthYear
+        private string name;
+        public Person(string name)
         {
-            get { return birthYear; }
-            private set
-            {
-                if (value > 2022 && value < 1922)
-                {
-                    Console.WriteLine("Year format exeption");
-                }
-            }
+            this.name = name;
         }
-        public Person() { }
-        public Person(string name, int birthYear)
+        virtual public string Name { get { return name; } }
+        
+        public virtual int CompareTo(object obj1)
         {
-            Name = name;
-            BirthYear = birthYear;
+            Person p1 = obj1 as Person;
+            if (p1 == null)
+                throw new ArgumentException("Not a Person");
+            else
+                return Name.ToLower().CompareTo(p1.Name.ToLower());
         }
-        public int Age()
-        {
-            int age = 2023 - birthYear;
-            Console.WriteLine(name + birthYear + age);
-            return age;
-        }
-        public  void ChangeName(string newName)
-        {
-            name = newName;
-        }
-        public override string ToString()
-        {
-            return string.Format($" Name: {name} birthyear : {birthYear.ToString("yyyy")} ");
-        }
-        public static bool operator ==(Person person1, Person person2)
-        {
-            return person1.name == person2.name;
-        }
-        public static bool operator !=(Person person1, Person person2)
-        {
-            return person1.name != person2.name;
-        }
-        public void  Output()
-        {
-            Console.WriteLine($" Name : {name} year : {birthYear}");
-        }
-        public static Person Input()
-        {
-            Person p = new Person();
-            Console.Write("Enter persons name : ");
-            string name = Console.ReadLine();
-            p.name = name;
-            Console.Write("Enter birth year : ");
-            int year = Convert.ToInt32((Console.ReadLine()));
-            p.birthYear = year;
-            
-            return p;
 
+        public virtual void Print()
+        {
+            Console.WriteLine("Person: {0}", name);
+        }
+
+        public virtual void Display()
+        {
+            Console.WriteLine("Hi, {0}", Name);
         }
     }
 }
