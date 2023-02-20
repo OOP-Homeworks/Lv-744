@@ -1,52 +1,46 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
-namespace HW_8_2023
+namespace ConsoleApp
 {
     class Program
     {
         static void Main(string[] args)
         {
-            double maxPerimetr = 0.0;
-            List<Shapes> shapes = new();
-            shapes.Add(new Square("square1", 8, "Big"));
-            shapes.Add(new Square("square2", 3, "Small"));
-            shapes.Add(new Square("square3", 6, "Medium"));
-            shapes.Add(new Circle("circle1", 2, "Small"));
-            shapes.Add(new Circle("circle2", 5, "Medium"));
-            shapes.Add(new Circle("circle3", 12, "Big"));
-            foreach (var item in shapes)
+            /*B) Create Console Application project.
+               Prepare txt file with a lot of text inside (for example take you .cs file from previos homework)
+               Read all lines of text from file into array of strings.
+               Each array item contains one line from file.
+            */
+
+            string filePath = @"C:\Users\fedor\source\repos\18.02.2023_HomeWork_9\file.txt";
+            string[] lines = File.ReadAllLines(filePath);
+
+            // 1) Count and write the number of symbols in every line.
+            foreach (string line in lines)
             {
-                item.Print();
+                Console.WriteLine($"Line {Array.IndexOf(lines, line) + 1} contains {line.Length} symbols.");
             }
-            Console.WriteLine("Enter name of shape to find it : ");
-            string input = Console.ReadLine();
-            foreach (var item in shapes)
+
+            // 2) Find the longest and the shortest line.
+            string longestLine = lines.OrderByDescending(l => l.Length).First();
+            string shortestLine = lines.OrderBy(l => l.Length).First();
+
+            Console.WriteLine($"\nThe longest line is:\n {longestLine}");
+            Console.WriteLine($"\nThe shortest line is:\n {shortestLine}");
+
+            // 3) Find and write only lines, which consist of word "var".
+            var varLines = lines.Where(line => line.Contains("shape"));
+
+            Console.WriteLine($"\nLines containing the word 'shape':\n");
+            foreach (string line in varLines)
             {
-                if (item.Name == input)
-                {
-                    item.Print();
-                }
+                Console.WriteLine(line);
             }
-            foreach (Shapes s in shapes)
-            {
-                if (maxPerimetr <= s.Perimeter())
-                {
-                    maxPerimetr = s.Perimeter();
-                }
-            }
-            foreach (Shapes o in shapes)
-            {
-                if (maxPerimetr == o.Perimeter())
-                {
-                    Console.WriteLine($"Name: {o.Name}, with max perimetr:{o.Perimeter():###.##} ");
-                }
-            }
-            shapes.Sort();
-            foreach (var item in shapes)
-            {
-                Console.WriteLine($"Shape : {item} with perimeter : {item.Perimeter():###.##}");
-            }
+
+            Console.ReadLine();
         }
     }
 }
+
