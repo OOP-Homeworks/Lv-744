@@ -1,52 +1,77 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace HW_8_2023
+namespace _18._02._2023_HomeWork_9
 {
-    class Program
+    internal class Program
     {
+        public static Random rnd = new Random();
+
         static void Main(string[] args)
         {
-            double maxPerimetr = 0.0;
-            List<Shapes> shapes = new();
-            shapes.Add(new Square("square1", 8, "Big"));
-            shapes.Add(new Square("square2", 3, "Small"));
-            shapes.Add(new Square("square3", 6, "Medium"));
-            shapes.Add(new Circle("circle1", 2, "Small"));
-            shapes.Add(new Circle("circle2", 5, "Medium"));
-            shapes.Add(new Circle("circle3", 12, "Big"));
-            foreach (var item in shapes)
+            /*A) Create Console Application project.
+                   Use classes Shape, Circle, Square from your previous homework.
+                   Use Linq and string functions to complete next tasks:
+                   1) Create list of Shape and fill it with 6 different shapes (Circle and Square).*/
+
+            List<Shape> shapes = new List<Shape>();
+
+            int[] shapePossible = new int[11];
+
+            for (int i = 0; i < shapePossible.Length; i++)
             {
-                item.Print();
-            }
-            Console.WriteLine("Enter name of shape to find it : ");
-            string input = Console.ReadLine();
-            foreach (var item in shapes)
-            {
-                if (item.Name == input)
+                shapePossible[i] = rnd.Next(0, 21);
+
+                if (shapePossible[i] <= 11)
                 {
-                    item.Print();
+                    shapes.Add(new Circle("Circle", shapePossible[i]));
+                }
+                else if (shapePossible[i] >= 11)
+                {
+                    shapes.Add(new Square("Square", shapePossible[i]));
                 }
             }
-            foreach (Shapes s in shapes)
+
+            foreach (Shape shape in shapes)
             {
-                if (maxPerimetr <= s.Perimeter())
-                {
-                    maxPerimetr = s.Perimeter();
-                }
+                shape.Print();
             }
-            foreach (Shapes o in shapes)
+
+            // 2) Find and write into the file shapes with area from range [10,100]
+
+            Console.WriteLine("\n\nShapes 10-100:");
+            IEnumerable<Shape> shapesInRange = shapes.Where(shape => shape.Area() >= 10 && shape.Area() <= 100);
+            foreach (Shape shape in shapesInRange)
             {
-                if (maxPerimetr == o.Perimeter())
-                {
-                    Console.WriteLine($"Name: {o.Name}, with max perimetr:{o.Perimeter():###.##} ");
-                }
+                shape.Print();
             }
-            shapes.Sort();
-            foreach (var item in shapes)
+
+            // 3) Find and write into the file shapes which name contains letter 'a'
+
+            Console.WriteLine("\n\nNames with 'a':");
+            IEnumerable<Shape> shapesWithA = shapes.Where(shape => shape.Name.Contains('a'));
+            foreach (Shape shape in shapesWithA)
             {
-                Console.WriteLine($"Shape : {item} with perimeter : {item.Perimeter():###.##}");
+                shape.Print();
             }
+
+
+            // 4) Find and remove from the list all shapes with perimeter less then 5. Write resulted list into Console 
+
+            Console.WriteLine("\n\nPerimeter not 15:");
+            shapes.RemoveAll(shape => shape.Perimeter() < 15);
+            foreach (Shape shape in shapes)
+            {
+                shape.Print();
+            }
+
+            Console.WriteLine();
+            Console.ReadLine();
         }
+
     }
 }
