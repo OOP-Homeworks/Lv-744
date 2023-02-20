@@ -17,5 +17,12 @@ namespace homework
         {
             return  (int) (Area() - other.Area());
         }
+        public override string ToString()
+        {
+            return string.Format(
+                "The {0} named {1}, area = {2}, perimetr = {3}",
+                this is Square ? "square" : "circle",
+                Name, Area(), Perimetr()); 
+        }
     }
 }

@@ -4,34 +4,40 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HW_8_2023
+namespace _20230216_HomeWork_8
 {
-    class Circle : Shapes
+    internal class Circle : Shape
     {
-        private int radius;
-        private string size;
-        public int Radius { get { return radius; } }
-        public string Size { get { return size; } }
+        private double radius;
 
-        public Circle(string name, int radius, string size) : base(name)
+        public Circle(string name, double radius) : base(name)
+
         {
-            this.size = size;
             this.radius = radius;
         }
+
+
         public override double Area()
         {
-            return Math.PI * Math.Pow(Radius, 2);
-        }
+            return Math.PI * radius * radius;
 
-        public override double Perimeter()
+        public override double GetPerimeter()
         {
-            return 2 * Radius * Math.PI; 
+            return 2 * Math.PI * radius;
+
         }
-        public override void Print()
+
+        public override double GetArea()
         {
-            Console.WriteLine("Circle method Print:\n{0} have Area : {1:###.##} and Perimeter :{2:###.##} Size {3}", Name, Area(), Perimeter(), size);
+
+            return 2 * Math.PI * radius;
+
         }
 
+        public override string GetName()
+        {
+            return "Circle";
 
+        }
     }
 }
