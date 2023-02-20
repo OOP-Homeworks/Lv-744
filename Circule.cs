@@ -6,44 +6,35 @@ using System.Threading.Tasks;
 
 namespace hw_8_Taranko
 {
-    internal class Square : Shape , IComparable
+    internal class Circule : Shape , IComparable
     {
-        double side;
-        public Square(double side, string name) : base(name)
+        double radious;
+        public Circule(double radious , string name) : base(name)
         {
-            this.side = side;
-        }
-        public double Side
-        {
-            get { return side; }
-            set { side = value; }
+            this.radious = radious;
         }
 
-        public override double Area()
-        {
-            return Math.Pow(side, 2);
+        public double Radious {
+            get { return radious; }
+            set { radious = value; }
+        }
+
+        public override double Area() {
+            return Math.PI * Math.Pow(radious, 2);
         }
         public override double Perimeter()
         {
-            return 4 * side;
+            return 2 * Math.PI * radious;
         }
 
         public override string ToString()
         {
             return $"Shape : {this.Name}\t\tArea : {this.Area():f3}\t\tPerimeter : {this.Perimeter():f3}";
         }
+
         public int CompareTo(object o)
         {
             if (o.GetType() == this.GetType())
-            {
-                Square temp = (Square)o;
-                if (temp.Area() < this.Area())
-                {
-                    return 1;
-                }
-                return -1;
-            }
-            else
             {
                 Circule temp = (Circule)o;
                 if (temp.Area() < this.Area())
@@ -52,6 +43,15 @@ namespace hw_8_Taranko
                 }
                 return -1;
             }
+            else
+            {
+                Square temp = (Square)o;
+                if (temp.Area() < this.Area())
+                {
+                    return 1;
+                }
+                return -1;
+            }          
         }
     }
 }
