@@ -1,52 +1,67 @@
-﻿using System;
+﻿using _20230216_HomeWork_8;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace HW_8_2023
+namespace _20230216_HomeWork_8
 {
-    class Program
+    internal class Program
     {
+        public static Random rnd = new Random();
+
         static void Main(string[] args)
         {
-            double maxPerimetr = 0.0;
-            List<Shapes> shapes = new();
-            shapes.Add(new Square("square1", 8, "Big"));
-            shapes.Add(new Square("square2", 3, "Small"));
-            shapes.Add(new Square("square3", 6, "Medium"));
-            shapes.Add(new Circle("circle1", 2, "Small"));
-            shapes.Add(new Circle("circle2", 5, "Medium"));
-            shapes.Add(new Circle("circle3", 12, "Big"));
-            foreach (var item in shapes)
+            List<Shape> shapes = new List<Shape>();
+
+            int[] shapePossible = new int[11];
+
+            for (int i = 0; i < 10; i++)
             {
-                item.Print();
-            }
-            Console.WriteLine("Enter name of shape to find it : ");
-            string input = Console.ReadLine();
-            foreach (var item in shapes)
-            {
-                if (item.Name == input)
+                if (rnd.Next(0, 2) == 0)
                 {
-                    item.Print();
+                    shapes.Add(new Circle("Circle", rnd.Next(1, 11)));
+                }
+                else
+                {
+                    shapes.Add(new Square("Square", rnd.Next(1, 11)));
                 }
             }
-            foreach (Shapes s in shapes)
+
+            Console.WriteLine("________________\n");
+
+            foreach (Shape shape in shapes)
             {
-                if (maxPerimetr <= s.Perimeter())
+                shape.Print();
+            }
+
+            Console.WriteLine("________________\n");
+
+            Shape maxPerimeterShape = shapes[0];
+
+            for (int i = 1; i < shapes.Count; i++)
+            {
+                if (shapes[i].Perimeter() > maxPerimeterShape.Perimeter())
                 {
-                    maxPerimetr = s.Perimeter();
+                    maxPerimeterShape = shapes[i];
+                    
                 }
             }
-            foreach (Shapes o in shapes)
-            {
-                if (maxPerimetr == o.Perimeter())
-                {
-                    Console.WriteLine($"Name: {o.Name}, with max perimetr:{o.Perimeter():###.##} ");
-                }
-            }
+
+            Console.WriteLine($"Shape with max perimeter is:");
+            maxPerimeterShape.Print();
+            
+            Console.WriteLine("________________\n");
+
             shapes.Sort();
-            foreach (var item in shapes)
+
+            foreach (Shape shape in shapes)
             {
-                Console.WriteLine($"Shape : {item} with perimeter : {item.Perimeter():###.##}");
+                shape.Print();
             }
+
+            Console.ReadLine();
         }
     }
 }
