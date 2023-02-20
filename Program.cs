@@ -1,52 +1,69 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace HW_8_2023
+namespace Task_9
 {
-    class Program
+    internal class Program
     {
+        public static Random rnd = new Random();
+
         static void Main(string[] args)
         {
-            double maxPerimetr = 0.0;
-            List<Shapes> shapes = new();
-            shapes.Add(new Square("square1", 8, "Big"));
-            shapes.Add(new Square("square2", 3, "Small"));
-            shapes.Add(new Square("square3", 6, "Medium"));
-            shapes.Add(new Circle("circle1", 2, "Small"));
-            shapes.Add(new Circle("circle2", 5, "Medium"));
-            shapes.Add(new Circle("circle3", 12, "Big"));
-            foreach (var item in shapes)
+            /*Create a collection(array) of 10 integers numbers */
+
+            int[] numbers = new int[11];
+
+            for (int i = 0; i < numbers.Length; i++)
             {
-                item.Print();
+                numbers[i] = rnd.Next(-200, 201);
             }
-            Console.WriteLine("Enter name of shape to find it : ");
-            string input = Console.ReadLine();
-            foreach (var item in shapes)
+
+            Console.WriteLine("Random numbers:");
+            foreach (int i in numbers)
             {
-                if (item.Name == input)
-                {
-                    item.Print();
-                }
+                Console.Write(" {0},", i);
             }
-            foreach (Shapes s in shapes)
+
+            // Get and display only negative numbers on the console
+
+            Console.WriteLine("\n\nNegative numbers:");
+            IEnumerable<int> negative = numbers.Where(i => i < 0);
+            foreach (int i in negative)
             {
-                if (maxPerimetr <= s.Perimeter())
-                {
-                    maxPerimetr = s.Perimeter();
-                }
+                Console.Write(" {0},", i);
             }
-            foreach (Shapes o in shapes)
+
+            // Get and display only positive numbers on the console
+
+            Console.WriteLine("\n\nPositive numbers:");
+            IEnumerable<int> positive = numbers.Where(i => i > 0);
+            foreach (int i in positive)
             {
-                if (maxPerimetr == o.Perimeter())
-                {
-                    Console.WriteLine($"Name: {o.Name}, with max perimetr:{o.Perimeter():###.##} ");
-                }
+                Console.Write(" {0},", i);
             }
-            shapes.Sort();
-            foreach (var item in shapes)
+
+            // Get the largest and smallest elements from the array, and find the sum of all elements of the array.
+
+            Console.WriteLine("\n\nLargest num: {0}\n Smallest num: {1}\n Sum: {2}", numbers.Max(), numbers.Min(), numbers.Sum());
+
+            // Get the first largest element in array that is smaller than the Average of elements in array 
+
+            Console.WriteLine("\n\nFirst small num: {0}", numbers.Where(i => i< numbers.Average()).Max());
+
+            // Sort the array using OrderBy
+
+            Console.WriteLine("\n\nSort OrderBy:");
+            IEnumerable<int> sortedNum = numbers.OrderBy(i => i);
+            foreach (int i in sortedNum)
             {
-                Console.WriteLine($"Shape : {item} with perimeter : {item.Perimeter():###.##}");
+                Console.Write(" {0},", i);
             }
+
+            Console.WriteLine();
+            Console.ReadLine();
         }
     }
 }
