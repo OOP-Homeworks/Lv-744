@@ -4,32 +4,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HW_8_2023
+namespace SayHi
 {
-    class Square : Shapes
+    class Square : Shape
     {
-        private int side;
-        private string size;
-        public int Side { get { return side; } }
-        public string Size { get { return size; } }
+        private double side;
 
-        public Square(string name, int side, string size) : base(name)
+        public Square(double side)
         {
-            this.size = size;
             this.side = side;
         }
-        public override  double Area()
+
+        public override double GetPerimeter()
         {
-            return side * side;   
+            return 4 * side;
         }
 
-        public override  double Perimeter()
+        public override double GetArea()
         {
-            return 4 * side;    
+            return side * side;
         }
-        public override void Print()
+
+        public override string GetName()
         {
-            Console.WriteLine("Square method Print :\n{0} have Area : {1:###.##} and Perimeter :{2:###.##} Size : {3}",name,Area(),Perimeter(),size);
+            return "Square";
         }
     }
 }

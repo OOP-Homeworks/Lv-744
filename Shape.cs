@@ -4,21 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CsharpTraining
+namespace SayHi
 {
     abstract class Shape
     {
-        string name;
-
-        public string Name { get; set; }
-
-        public Shape(string name) 
-        {
-            this.name = name;
-        }
-        public abstract double Area();
-        public abstract double Perimeter();
-        
-        
+        public abstract double GetPerimeter();
+        public abstract double GetArea();
+        public abstract string GetName();
     }
 }
+
