@@ -1,4 +1,5 @@
-﻿using _20230216_HomeWork_8;
+
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -59,9 +60,6 @@ namespace _20230216_HomeWork_8
             foreach (Shape shape in shapes)
             {
                 shape.Print();
-            }
 
-            Console.ReadLine();
-        }
-    }
+}
 }

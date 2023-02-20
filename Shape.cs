@@ -4,10 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace _20230216_HomeWork_8
+
 {
     abstract class Shape : IComparable<Shape>
     {
+
         private string name;
 
         public string Name { get { return name; } }
@@ -43,5 +46,7 @@ namespace _20230216_HomeWork_8
         {
             Console.WriteLine("Shape: {0}, area: {1:f2}, perimeter: {2:f2}", name, Area(), Perimeter());
         }
+
     }
 }
+
