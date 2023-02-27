@@ -4,24 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _20230215_HW_Task_8
+namespace _26022023_HomeWork_10Person
 {
-    abstract class Person : IComparable
+     public class Person : IComparable<Person>
     {
         private string name;
         public Person(string name)
         {
             this.name = name;
         }
-        virtual public string Name { get { return name; } }
-        
-        public virtual int CompareTo(object obj1)
+        public virtual string Name { get { return name; } }
+
+        public virtual int CompareTo(Person other)
         {
-            Person p1 = obj1 as Person;
-            if (p1 == null)
+            if (other == null)
                 throw new ArgumentException("Not a Person");
             else
-                return Name.ToLower().CompareTo(p1.Name.ToLower());
+                return Name.ToLower().CompareTo(other.Name.ToLower());
         }
 
         public virtual void Print()
@@ -34,4 +33,5 @@ namespace _20230215_HW_Task_8
             Console.WriteLine("Hi, {0}", Name);
         }
     }
+
 }
