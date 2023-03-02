@@ -1,48 +1,148 @@
-﻿namespace _23022023_HomeWork_10
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+
+namespace Lecture7_744
 {
     internal class Program
     {
-        private static void Main(string[] args)
+        static void Main(string[] args)
         {
-            Random rnd = new Random();
-            const int sizeNum = 3;
-            Point start = new Point(0, 0);
-            double min = double.MaxValue;
-            int minTriangle = 0;
-            var list = new List<Triangle>();
 
-            for (int i = 0; i < sizeNum; i++)
+            /// Task 7
+            ///
+            Task7();
+
+            /// Homework 7
+            ///
+
+            var phoneBook = new Dictionary<string, string>();
+            string pathFrom = "C:\\SoftServe_Lectures\\MyPhones.txt";
+            string pathTo_OnlyNumbers = "C:\\SoftServe_Lectures\\Nphones.txt";
+            string pathTo_NewFormat = "C:\\SoftServe_Lectures\\New.txt";
+            Homework7(phoneBook, pathFrom, pathTo_OnlyNumbers, pathTo_NewFormat);
+
+            Console.ReadKey();
+
+        }
+
+        static void Task7()
+        {
+
+            string pathFrom = "D:\\";
+
+            if(Directory.Exists(pathFrom)) 
             {
-                Point[] vertexes = new Point[3];
 
-                for (int j = 0; j < 3; j++)
-                {
-                    vertexes[j] = new Point(rnd.NextDouble(), rnd.NextDouble());
-                }
+                ///2
+                ///
 
-                try
+                string pathTo = "D:\\DirectoryC.txt";
+                using (StreamWriter writer = new StreamWriter(pathTo))
                 {
-                    var triangle = new Triangle(vertexes[0], vertexes[1], vertexes[2]);
-                    if (triangle.IsValid())
+
+                    string[] directories = Directory.GetDirectories(pathFrom);
+                    foreach (string directory in directories)
                     {
-                        double distance = vertexes[0].Distance(start) + vertexes[1].Distance(start) + vertexes[2].Distance(start);
-                        if (distance < min)
+                        Console.WriteLine(directory);
+                        writer.WriteLine(directory);
+                        
+                        DirectoryInfo infoDir = new DirectoryInfo(directory);
+                        writer.WriteLine("   -> " + infoDir.Name);
+                        writer.WriteLine("   -> " + infoDir.GetType());
+
+                        try
                         {
-                            min = distance;
-                            minTriangle = i;
+                            string[] filesFromDirectory = Directory.GetFiles(directory);
+                            foreach (string file in filesFromDirectory)
+                            {
+                                Console.WriteLine(file);
+                                writer.WriteLine(file);
+
+                                FileInfo infoFile = new FileInfo(file);
+                                writer.WriteLine("   -> " + infoFile.Name);
+                                writer.WriteLine("   -> " + infoFile.GetType());
+                                writer.WriteLine("   -> " + infoFile.Length);
+
+                            }
                         }
-                        list.Add(triangle);
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine("Error in dir = " + ex.Message);
+                        }
+
                     }
+
                 }
-                catch (ArgumentException)
+
+                /// 3
+                /// 
+                string[] files = Directory.GetFiles(pathFrom,"*.txt");
+                foreach(string file in files) 
                 {
-                    i--;
+                    Console.WriteLine(file);
+                }
+            }
+        }
+
+        static void Homework7(Dictionary<string, string>  phoneBook, string pathFrom, string pathTo_OnlyNumbers, string pathTo_NewFormat)
+        {
+            using (var filePhone = new StreamReader(pathFrom, System.Text.Encoding.Default))
+            {
+
+                string line;
+                int i = 1;
+                while ((line = filePhone.ReadLine()) != null)
+                {
+                    string[] parts = line.Split(" ");
+                    phoneBook.Add(parts[0], parts[1]);
+                    i++;
+                }
+
+            }
+
+            Console.Write("Enter name to get number = ");
+            string name = Console.ReadLine();
+            if (name != string.Empty)
+            {
+                string findNumber;
+                phoneBook.TryGetValue(name, out findNumber);
+                if (findNumber != null)
+                {
+                    Console.WriteLine($"{name} = {findNumber}");
+                }
+                else
+                {
+                    Console.WriteLine("Number is not found :(");
                 }
             }
 
-            list[minTriangle].Print();
+            using(var file = new StreamWriter(pathTo_OnlyNumbers, false))
+            {
+                foreach (string phone in phoneBook.Values)
+                    file.WriteLine(phone);
+            }
+            Console.WriteLine($"File {pathTo_OnlyNumbers} save!");
 
-            Console.ReadLine();
+            Regex regex = new Regex(@"^80[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]");
+            foreach (var phone in phoneBook.Values) 
+            {
+                if (regex.IsMatch(phone))
+                {
+                    var myKey = phoneBook.FirstOrDefault(x => x.Value == phone).Key;
+                    phoneBook[myKey] = "+3" + phone;
+                }
+            }
+
+            using (var file = new StreamWriter(pathTo_NewFormat, false))
+            {
+                foreach (var dictionary in phoneBook)
+                    file.WriteLine(dictionary.Key + " = " + dictionary.Value);
+            }
+            Console.WriteLine($"File {pathTo_NewFormat} save!");
+
         }
+
     }
 }
